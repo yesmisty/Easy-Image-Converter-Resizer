@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ultimate Free Image Converter & Resizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: linear-gradient(120deg, #97c1ff 0%, #00e3ae 100%);
+      margin: 0;
+      min-height: 100vh;
+      transition: background 0.2s, color 0.2s;
+    }
+    body.dark {
+      background: #161b22;
+      color: #e3e3e3;
+    }
+    .container {
+      max-width: 480px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(35,167,255,.14);
+      padding: 26px 18px 20px 18px;
+      text-align: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    body.dark .container {
+      background: #23272e;
+      color: #eee;
+    }
+    .lang-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 16px;
+    }
+    .lang-select {
+      padding: 4px 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      background: #f3f8ff;
+      border: 1px solid #b8e5fa;
+      color: #2566a8;
+      margin-right: 10px;
+      width: auto;
+      min-width: 0;
+      max-width: 120px;
+    }
+    body.dark .lang-select {
+      background: #20272e;
+      color: #a2e5ff;
+      border-color: #225275;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 12px;
+      color: #2a72e7;
+    }
+    body.dark h1 {
+      color: #73d6ff;
+    }
+    .input-group {
+      margin-bottom: 16px;
+    }
+    .drop-area {
+      border: 2px dashed #2a72e7;
+      border-radius: 10px;
+      padding: 28px 10px;
+      margin-bottom: 10px;
+      background: #f3faff;
+      color: #2a72e7;
+      font-size: 1.08em;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    body.dark .drop-area {
+      border-color: #44dde2;
+      background: #1b232b;
+      color: #67ddfa;
+    }
+    .drop-area.dragover {
+      border-color: #00b2ae;
+      background: #e6fcfa;
+    }
+    body.dark .drop-area.dragover {
+      border-color: #36ffc4;
+      background: #20272f;
+    }
+    .drop-area input[type="file"] {
+      display: none;
+    }
+    .image-info {
+      font-size: 13px;
+      color: #417bc2;
+      margin-bottom: 10px;
+      background: #f6f8fc;
+      border-radius: 8px;
+      padding: 5px 12px;
+      display: none;
+    }
+    body.dark .image-info {
+      background: #243040;
+      color: #5eb2ff;
+    }
+    #preview-wrapper {
+      position: relative;
+      max-width: 100%;
+      width: 100%;
+      min-height: 60px;
+      margin: 14px auto 8px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #img-preview {
+      max-width: 100%;
+      max-height: 220px;
+      border-radius: 9px;
+      box-shadow: 0 2px 8px #ececec;
+      background: #fafbff;
+      margin: auto;
+      display: none;
+    }
+    body.dark #img-preview {
+      box-shadow: 0 2px 8px #222e3f;
+      border: 2px solid #243040;
+      background: #23272e;
+    }
+    .resize-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 13px;
+    }
+    .resize-fields {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      width: 100%;
+      max-width: 340px;
+      margin-bottom: 0;
+    }
+    .resize-fields > div {
+      flex: none;
+      width: 110px;
+    }
+    .ratio-box {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+      font-size: 14px;
+      padding: 7px 18px 8px 16px;
+      background: #eef6fe;
+      border-radius: 7px;
+      box-shadow: 0 1px 5px #ccefff11;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+    body.dark .ratio-box {
+      background: #23272e;
+      color: #c0ecff;
+      box-shadow: 0 1px 5px #01223344;
+    }
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-right: 2px;
+    }
+    select, button, input[type="number"] {
+      padding: 10px;
+      width: 100%;
+      margin-top: 6px;
+      margin-bottom: 8px;
+      font-size: 16px;
+      border-radius: 7px;
+      border: 1px solid #cce2ff;
+    }
+    input[type="range"] {
+      width: 100%;
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+    button {
+      background: #2a72e7;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      margin-top: 5px;
+      transition: background .3s;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0099ff;
+    }
+    body.dark button {
+      background: #339fc4;
+    }
+    .small-btn {
+      padding: 7px 15px;
+      font-size: 14px;
+      border-radius: 6px;
+      margin: 2px 4px 2px 0;
+      width: auto;
+    }
+    #copy-btn {
+      margin-top: 7px;
+      margin-left: 8px;
+      padding: 7px 18px;
+      background: #19a856;
+      color: #fff;
+      border-radius: 6px;
+      border: none;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #copy-btn:active {
+      background: #0d7634;
+    }
+    .formats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      justify-content: center;
+    }
+    .format-card {
+      background: #e9f6ff;
+      color: #2762ef;
+      border: 1px dashed #bae1ff;
+      border-radius: 11px;
+      padding: 7px 14px;
+      font-size: 15px;
+      min-width: 70px;
+      margin: 2px;
+      text-align: center;
+    }
+    body.dark .format-card {
+      background: #243040;
+      color: #78bbfe;
+      border-color: #6ca7ea;
+    }
+    .dimension-note {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    body.dark .dimension-note {
+      color: #99b2d3;
+    }
+    .note {
+      margin-top: 11px;
+      color: #7299df;
+      font-size: 14px;
+    }
+    body.dark .note {
+      color: #6acbc8;
+    }
+    .theme-toggle {
+      float: right;
+      margin: 0 0 10px 0;
+    }
+    label {
+      color: #2a72e7;
+      font-weight: bold;
+      font-size: 15px;
+      display: block;
+      margin-top: 8px;
+      margin-bottom: 3px;
+    }
+    body.dark label {
+      color: #88c8ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-row">
+      <select id="lang-select" class="lang-select" aria-label="Language">
+        <option value="en">English</option>
+      </select>
+      <button class="theme-toggle small-btn" id="theme-toggle">🌙 Dark Mode</button>
+    </div>
+    <h1 id="title">Ultimate Free Image Converter & Resizer</h1>
+    <div class="input-group">
+      <div class="drop-area" id="drop-area">
+        <span id="drop-text">Drag & drop your image or click to select</span>
+        <input type="file" id="img-upload" accept="image/jpeg,image/png,image/webp,image/bmp,image/gif,image/tiff" />
+      </div>
+      <div id="image-info" class="image-info"></div>
+    </div>
+    <div id="preview-wrapper">
+      <img id="img-preview" alt="Image Preview" />
+    </div>
+    <div class="input-group">
+      <div class="resize-group">
+        <div class="resize-fields">
+          <div>
+            <label for="img-width" class="lbl-width">Width (px)</label>
+            <input type="number" id="img-width" min="1" placeholder="auto">
+          </div>
+          <div>
+            <label for="img-height" class="lbl-height">Height (px)</label>
+            <input type="number" id="img-height" min="1" placeholder="auto">
+          </div>
+        </div>
+        <div class="ratio-box">
+          <input type="checkbox" id="maintain-ratio" checked>
+          <label for="maintain-ratio" class="lbl-ratio">Maintain Ratio</label>
+        </div>
+      </div>
+      <div class="dimension-note" id="dim-note">
+        With ratio: edit one box, other auto-calculates.<br>
+        Without: set both freely or leave blank to keep original.
+      </div>
+      <button class="small-btn" id="rotate-btn">🔄 Rotate 90°</button>
+      <button class="small-btn" id="flip-h-btn">⟷ Flip H</button>
+      <button class="small-btn" id="flip-v-btn">⇵ Flip V</button>
+      <button class="small-btn" id="reset-btn">🗑 Clear All</button>
+    </div>
+    <div class="input-group">
+      <label for="img-quality" class="lbl-quality">Quality <span id="quality-value">90</span>%</label>
+      <input type="range" id="img-quality" min="10" max="100" value="90">
+      <select id="img-format">
+        <option value="image/jpeg">JPEG</option>
+        <option value="image/png">PNG</option>
+        <option value="image/webp">WEBP</option>
+        <option value="image/bmp">BMP</option>
+        <option value="image/gif">GIF</option>
+        <option value="image/tiff">TIFF</option>
+      </select>
+      <button id="img-convert">Resize & Download</button>
+      <button id="copy-btn" title="Copy image to clipboard">📋 Copy to Clipboard</button>
+    </div>
+    <div class="formats-row">
+      <div class="format-card">PNG ⇄ JPG</div>
+      <div class="format-card">JPG ⇄ WEBP</div>
+      <div class="format-card">PNG ⇄ WEBP</div>
+      <div class="format-card">BMP ⇄ JPG</div>
+      <div class="format-card">GIF ⇄ PNG</div>
+      <div class="format-card">TIFF ⇄ JPG</div>
+    </div>
+    <canvas id="img-canvas" style="display:none;"></canvas>
+    <div class="note" id="privacy-note">All processing is local—no image leaves your browser.</div>
+  </div>
+
+  <script>
+    // --- Language UI (only English for now, but selector remains) ---
+    const LT = {
+      en: {
+        title: "Ultimate Free Image Converter & Resizer",
+        drop: "Drag & drop your image or click to select",
+        width: "Width (px)",
+        height: "Height (px)",
+        ratio: "Maintain Ratio",
+        dimNote: "With ratio: edit one box, other auto-calculates.<br>Without: set both freely or leave blank to keep original.",
+        rotate: "🔄 Rotate 90°",
+        flipH: "⟷ Flip H",
+        flipV: "⇵ Flip V",
+        reset: "🗑 Clear All",
+        quality: "Quality",
+        download: "Resize & Download",
+        copy: "📋 Copy to Clipboard",
+        privacy: "All processing is local—no image leaves your browser."
+      }
+    };
+    function setLangText(lang) {
+      document.getElementById('title').textContent = LT[lang].title;
+      document.title = LT[lang].title;
+      document.getElementById('drop-text').textContent = LT[lang].drop;
+      document.querySelector('.lbl-width').textContent = LT[lang].width;
+      document.querySelector('.lbl-height').textContent = LT[lang].height;
+      document.querySelector('.lbl-ratio').textContent = LT[lang].ratio;
+      document.getElementById('dim-note').innerHTML = LT[lang].dimNote;
+      document.getElementById('rotate-btn').textContent = LT[lang].rotate;
+      document.getElementById('flip-h-btn').textContent = LT[lang].flipH;
+      document.getElementById('flip-v-btn').textContent = LT[lang].flipV;
+      document.getElementById('reset-btn').textContent = LT[lang].reset;
+      document.querySelector('.lbl-quality').innerHTML = LT[lang].quality + ' <span id="quality-value">' + document.getElementById('quality-value').textContent + '</span>%';
+      document.getElementById('img-convert').textContent = LT[lang].download;
+      document.getElementById('copy-btn').textContent = LT[lang].copy;
+      document.getElementById('privacy-note').textContent = LT[lang].privacy;
+    }
+    document.getElementById('lang-select').addEventListener('change', e => {
+      setLangText(e.target.value);
+    });
+    setLangText('en'); // default
+
+    // --- Dark Mode ---
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.onclick = function () {
+      document.body.classList.toggle('dark');
+      themeToggle.textContent = document.body.classList.contains('dark') ? "☀️ Light Mode" : "🌙 Dark Mode";
+    };
+
+    // --- Drag & Drop Logic (single file) ---
+    const dropArea = document.getElementById('drop-area');
+    const imgUpload = document.getElementById('img-upload');
+    const dropText = document.getElementById('drop-text');
+    const imageInfoDisplay = document.getElementById('image-info');
+    let currentFile = null;
+
+    dropArea.addEventListener('click', () => imgUpload.click());
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropArea.addEventListener(eventName, e => {
+        e.preventDefault(); e.stopPropagation();
+        dropArea.classList.add('dragover');
+        dropText.textContent = dropText.getAttribute('data-drag') || "Release to select file";
+      });
+    });
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, e => {
+        e.preventDefault(); e.stopPropagation();
+        dropArea.classList.remove('dragover');
+        setLangText(document.getElementById('lang-select').value);
+      });
+    });
+
+    dropArea.addEventListener('drop', e => {
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        imgUpload.files = e.dataTransfer.files;
+        handleImage(file);
+      }
+    });
+
+    imgUpload.addEventListener('change', () => {
+      if (imgUpload.files.length > 0) {
+        handleImage(imgUpload.files[0]);
+      }
+    });
+
+    function showImageInfo(name, format, w, h, size, outputW, outputH, outSize) {
+      imageInfoDisplay.innerHTML = `
+        <strong>${name}</strong><br>
+        <span>Format: ${format} &nbsp; Size: ${size} KB</span><br>
+        <span>Original: ${w} × ${h} px</span><br>
+        <span>Output: ${outputW} × ${outputH} px${outSize ? ` &nbsp;${outSize} KB` : ''}</span>`;
+      imageInfoDisplay.style.display = 'block';
+    }
+
+    // Preview, Resize, Aspect Ratio logic + More
+    const imgWidthInput = document.getElementById('img-width');
+    const imgHeightInput = document.getElementById('img-height');
+    const maintainRatio = document.getElementById('maintain-ratio');
+    const imgConvertBtn = document.getElementById('img-convert');
+    const copyBtn = document.getElementById('copy-btn');
+    const imgCanvas = document.getElementById('img-canvas');
+    const imgCtx = imgCanvas.getContext('2d');
+    const imgPreview = document.getElementById('img-preview');
+    const imgFormatSelect = document.getElementById('img-format');
+    const imgQualityInput = document.getElementById('img-quality');
+    const qualityValue = document.getElementById('quality-value');
+    const rotateBtn = document.getElementById('rotate-btn');
+    const flipHBtn = document.getElementById('flip-h-btn');
+    const flipVBtn = document.getElementById('flip-v-btn');
+    const resetBtn = document.getElementById('reset-btn');
+
+    let currentImage = null, originalWidth = 0, originalHeight = 0;
+    let imgRotation = 0, imgFlippedH = false, imgFlippedV = false;
+    let isUpdating = false;
+
+    imgQualityInput.addEventListener('input', () => {
+      qualityValue.textContent = imgQualityInput.value;
+      setLangText(document.getElementById('lang-select').value); // update quality label
+      updateOutputEstimate();
+    });
+
+    [imgWidthInput, imgHeightInput, imgFormatSelect, maintainRatio].forEach(el => {
+      el.addEventListener('input', updateOutputEstimate);
+      el.addEventListener('change', updateOutputEstimate);
+    });
+    rotateBtn.addEventListener('click', updateOutputEstimate);
+    flipHBtn.addEventListener('click', updateOutputEstimate);
+    flipVBtn.addEventListener('click', updateOutputEstimate);
+
+    function handleImage(file) {
+      currentFile = file;
+      const url = URL.createObjectURL(file);
+      imgPreview.src = url;
+      imgPreview.style.display = 'block';
+      let format = file.type.split('/')[1].toUpperCase();
+      let sizeKB = Math.round(file.size / 1024);
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        currentImage = new Image();
+        currentImage.onload = () => {
+          originalWidth = currentImage.width;
+          originalHeight = currentImage.height;
+          imgWidthInput.placeholder = originalWidth;
+          imgHeightInput.placeholder = originalHeight;
+          imgWidthInput.value = '';
+          imgHeightInput.value = '';
+          imgCanvas.width = originalWidth;
+          imgCanvas.height = originalHeight;
+          imgRotation = 0; imgFlippedH = false; imgFlippedV = false;
+          showImageInfo(file.name, format, originalWidth, originalHeight, sizeKB, originalWidth, originalHeight, sizeKB);
+          updateOutputEstimate();
+        };
+        currentImage.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    imgWidthInput.addEventListener('input', () => {
+      if (maintainRatio.checked && originalWidth && originalHeight && !isUpdating) {
+        if (imgWidthInput.value) {
+          isUpdating = true;
+          imgHeightInput.value = Math.round((imgWidthInput.value / originalWidth) * originalHeight);
+          isUpdating = false;
+          updateOutputEstimate();
+        }
+      } else updateOutputEstimate();
+    });
+    imgHeightInput.addEventListener('input', () => {
+      if (maintainRatio.checked && originalWidth && originalHeight && !isUpdating) {
+        if (imgHeightInput.value) {
+          isUpdating = true;
+          imgWidthInput.value = Math.round((imgHeightInput.value / originalHeight) * originalWidth);
+          isUpdating = false;
+          updateOutputEstimate();
+        }
+      } else updateOutputEstimate();
+    });
+    maintainRatio.addEventListener('change', updateOutputEstimate);
+
+    rotateBtn.onclick = function () { imgRotation = (imgRotation + 90) % 360; drawPreview(); updateOutputEstimate();}
+    flipHBtn.onclick = function () { imgFlippedH = !imgFlippedH; drawPreview(); updateOutputEstimate();}
+    flipVBtn.onclick = function () { imgFlippedV = !imgFlippedV; drawPreview(); updateOutputEstimate();}
+
+    function drawPreview() {
+      if (!currentImage) return;
+      const maxShowW = 400, maxShowH = 220;
+      let w = originalWidth, h = originalHeight;
+      let previewW = (imgRotation % 180 === 0) ? w : h;
+      let previewH = (imgRotation % 180 === 0) ? h : w;
+      let scale = Math.min(1, maxShowW / previewW, maxShowH / previewH);
+      let displayW = previewW * scale, displayH = previewH * scale;
+      let c = document.createElement('canvas'), ctx = c.getContext('2d');
+      c.width = previewW; c.height = previewH;
+      ctx.save();
+      ctx.translate(c.width / 2, c.height / 2);
+      if (imgRotation !== 0) ctx.rotate(imgRotation * Math.PI / 180);
+      ctx.scale(imgFlippedH ? -1 : 1, imgFlippedV ? -1 : 1);
+      ctx.drawImage(currentImage, -w / 2, -h / 2, w, h);
+      ctx.restore();
+      imgPreview.width = displayW; imgPreview.height = displayH;
+      imgPreview.style.display = 'block';
+      imgPreview.src = c.toDataURL("image/png");
+    }
+
+    function updateOutputEstimate() {
+      if (!currentImage || !currentFile) return;
+      let w = originalWidth, h = originalHeight;
+      let newW = parseInt(imgWidthInput.value, 10), newH = parseInt(imgHeightInput.value, 10);
+      if (!newW && !newH) { newW = w; newH = h; }
+      else if (maintainRatio.checked) {
+        if (newW && !newH) newH = Math.round((h / w) * newW);
+        if (!newW && newH) newW = Math.round((w / h) * newH);
+      }
+      let finalW = newW, finalH = newH;
+      if (imgRotation % 180 !== 0) { let t = finalW; finalW = finalH; finalH = t; }
+      let offCanvas = document.createElement('canvas');
+      offCanvas.width = finalW; offCanvas.height = finalH;
+      let offCtx = offCanvas.getContext('2d');
+      offCtx.save();
+      offCtx.translate(finalW / 2, finalH / 2);
+      offCtx.rotate(imgRotation * Math.PI / 180);
+      offCtx.scale(imgFlippedH ? -1 : 1, imgFlippedV ? -1 : 1);
+      offCtx.drawImage(currentImage, -newW / 2, -newH / 2, newW, newH);
+      offCtx.restore();
+      let selectedFormat = imgFormatSelect.value;
+      let q = 0.9;
+      if (selectedFormat.includes("jpeg") || selectedFormat.includes("webp")) {
+        q = parseInt(imgQualityInput.value, 10) / 100;
+      }
+      let dataURL = offCanvas.toDataURL(selectedFormat, q);
+      let estimatedKB = Math.round((dataURL.length - ('data:image/png;base64,'.length)) * 0.75 / 1024);
+      let format = selectedFormat.replace('image/', '').toUpperCase();
+      let inputKB = Math.round(currentFile.size / 1024);
+      showImageInfo(currentFile.name, format, w, h, inputKB, finalW, finalH, estimatedKB);
+    }
+
+    imgConvertBtn.onclick = function () {
+      if (!currentImage || !currentFile) {
+        alert('Please upload an image first.');
+        return;
+      }
+      convertImage(currentFile);
+    };
+    function convertImage(file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        let img = new Image();
+        img.onload = () => {
+          let w = img.width, h = img.height;
+          let newW = parseInt(imgWidthInput.value, 10);
+          let newH = parseInt(imgHeightInput.value, 10);
+          if (!newW && !newH) { newW = w; newH = h; }
+          else if (maintainRatio.checked) {
+            if (newW && !newH) newH = Math.round((h / w) * newW);
+            if (!newW && newH) newW = Math.round((w / h) * newH);
+          }
+          let finalW = newW, finalH = newH;
+          if (imgRotation % 180 !== 0) { let t = finalW; finalW = finalH; finalH = t; }
+          imgCanvas.width = finalW;
+          imgCanvas.height = finalH;
+          imgCtx.save();
+          imgCtx.translate(finalW / 2, finalH / 2);
+          imgCtx.rotate(imgRotation * Math.PI / 180);
+          imgCtx.scale(imgFlippedH ? -1 : 1, imgFlippedV ? -1 : 1);
+          imgCtx.drawImage(img, -newW / 2, -newH / 2, newW, newH);
+          imgCtx.restore();
+          const selectedFormat = imgFormatSelect.value;
+          let q = 0.9;
+          if (selectedFormat.includes("jpeg") || selectedFormat.includes("webp")) {
+            q = parseInt(imgQualityInput.value, 10) / 100;
+          }
+          const dataURL = imgCanvas.toDataURL(selectedFormat, q);
+          const ext = selectedFormat.split('/')[1];
+          const link = document.createElement('a');
+          link.href = dataURL;
+          link.download = `converted_resized_${file.name.replace(/\.[^/.]+$/, "")}.${ext}`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          updateOutputEstimate();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    copyBtn.onclick = async function () {
+      if (!currentImage) {
+        alert("Please upload and process an image before copying.");
+        return;
+      }
+      let w = originalWidth, h = originalHeight;
+      let newW = parseInt(imgWidthInput.value, 10);
+      let newH = parseInt(imgHeightInput.value, 10);
+      if (!newW && !newH) { newW = w; newH = h; }
+      else if (maintainRatio.checked) {
+        if (newW && !newH) newH = Math.round((h / w) * newW);
+        if (!newW && newH) newW = Math.round((w / h) * newH);
+      }
+      let finalW = newW, finalH = newH;
+      if (imgRotation % 180 !== 0) { let t = finalW; finalW = finalH; finalH = t; }
+      imgCanvas.width = finalW;
+      imgCanvas.height = finalH;
+      imgCtx.save();
+      imgCtx.translate(finalW / 2, finalH / 2);
+      imgCtx.rotate(imgRotation * Math.PI / 180);
+      imgCtx.scale(imgFlippedH ? -1 : 1, imgFlippedV ? -1 : 1);
+      imgCtx.drawImage(currentImage, -newW / 2, -newH / 2, newW, newH);
+      imgCtx.restore();
+
+      try {
+        imgCanvas.toBlob(async (blob) => {
+          await navigator.clipboard.write([
+            new ClipboardItem({ [blob.type]: blob })
+          ]);
+          copyBtn.textContent = "✅ Copied!";
+          setTimeout(() => copyBtn.textContent = LT[document.getElementById('lang-select').value].copy, 1200);
+        }, imgFormatSelect.value, imgQualityInput.value / 100);
+      } catch (e) {
+        alert("Sorry, Copy to Clipboard is not supported in this browser or context.");
+      }
+    };
+
+    resetBtn.onclick = function () {
+      currentFile = null;
+      currentImage = null;
+      imgPreview.style.display = "none";
+      imageInfoDisplay.style.display = "none";
+      imgWidthInput.value = imgHeightInput.value = "";
+      imgWidthInput.placeholder = imgHeightInput.placeholder = "";
+      imgCanvas.width = imgCanvas.height = 0;
+      imgRotation = 0; imgFlippedH = false; imgFlippedV = false;
+      imgUpload.value = "";
+    };
+  </script>
+</body>
+</html>
