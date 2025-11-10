@@ -5,7 +5,6 @@
 <a href="#" class="termly-display-preferences">Consent Preferences</a>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5329120501378061"
      crossorigin="anonymous"></script>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-THV9B0DZ49"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -15,7 +14,7 @@
   gtag('config', 'G-THV9B0DZ49');
 </script>
   <meta charset="UTF-8">
-  <title>EasyImageCR.in: Free Online Image File Converter & Resizer | Easily Convert and Resize Your Images Withi</title>
+  <title>Easy Image Converter & Resizer | Free & Private (EasyImageCR.in)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -51,8 +50,14 @@
     }
     .lang-row {
       display: flex;
-      justify-content: flex-end;
+      /* MODIFIED: Changed flex-end to space-between */
+      justify-content: space-between; 
       align-items: center;
+      gap: 12px;
+    }
+    /* NEW: Wrapper for right-side buttons */
+    .header-buttons-right {
+      display: flex;
       gap: 12px;
     }
     .lang-select {
@@ -72,6 +77,29 @@
       color: #a2e5ff;
       border-color: #225275;
     }
+    /* --- NEW: Header Navigation --- */
+    .header-nav {
+      text-align: center;
+      /* MODIFIED: Removed negative top margin, added positive top margin */
+      margin: 10px 0 15px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .header-nav a {
+      text-decoration: none;
+      color: #2a72e7;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    body.dark .header-nav a {
+      color: #73d6ff;
+    }
+    .header-nav a:hover {
+      text-decoration: underline;
+    }
+    /* --- End New Style --- */
     h1 {
       font-size: 2em;
       margin-bottom: 12px;
@@ -350,6 +378,9 @@
       letter-spacing: .01em;
       text-align: center;
     }
+    body.dark .madein {
+      color: #73d6ff;
+    }
     footer {
       text-align:center;
       padding:18px 0 10px 0;
@@ -358,15 +389,20 @@
       opacity:0.89;
       margin-top:2px;
     }
-    #privacy-modal {
+    body.dark footer {
+      color: #99b2d3;
+    }
+    /* --- MODIFIED: Generic Modal Styles --- */
+    .modal-overlay {
       display:none;
       position:fixed;
       z-index:4000;
       left:0;top:0;
       width:100vw;height:100vh;
       background:rgba(40,60,90,0.23);
+      backdrop-filter: blur(2px);
     }
-    #privacy-modal .modal-inner {
+    .modal-overlay .modal-inner {
       background:#fff;
       padding:28px 20px 20px 20px;
       max-width:480px;
@@ -375,12 +411,42 @@
       top:50%;left:50%;
       transform:translate(-50%,-50%);
       border-radius:13px;
+      /* MODAL FIX: Add flex column layout and max-height */
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
     }
-    #privacy-modal h2 {
+    body.dark .modal-overlay .modal-inner {
+      background: #23272e;
+      color: #eee;
+    }
+    /* MODAL FIX: Make content scrollable */
+    .modal-content {
+      text-align:left;
+      color:#292a2e;
+      font-size:15px;
+      padding-bottom:9px;
+      line-height:1.7;
+      /* MODAL FIX: Add overflow-y and padding for scrollbar */
+      overflow-y: auto;
+      padding-right: 10px; /* Space for scrollbar */
+    }
+    body.dark .modal-content {
+      color: #c0ecff;
+    }
+    body.dark .modal-content a,
+    body.dark .modal-overlay a {
+      color: #73d6ff;
+    }
+    .modal-overlay h2 {
       color:#2673e7;
       margin-top:0;
+      flex-shrink: 0; /* MODAL FIX: Prevent shrinking */
     }
-    #privacy-modal button {
+    body.dark .modal-overlay h2 {
+      color: #73d6ff;
+    }
+    .modal-overlay button {
       background:#2a72e7;
       color:#fff;
       padding:8px 22px;
@@ -388,10 +454,16 @@
       border-radius:6px;
       font-weight:bold;
       cursor:pointer;
-      margin-top:4px;
+      /* MODAL FIX: Adjust margin and prevent shrinking */
+      margin-top: 15px;
+      flex-shrink: 0;
     }
-    #privacy-modal a { color: #2a72e7; }
-    #privacy-modal ul { padding-left: 18px; }
+    body.dark .modal-overlay button {
+      background: #339fc4;
+    }
+    .modal-overlay a { color: #2a72e7; }
+    .modal-overlay ul { padding-left: 18px; }
+    /* --- End Modal Styles --- */
 
     /* --- NEW: Responsive Media Query --- */
     @media (min-width: 600px) {
@@ -440,9 +512,19 @@
         <option value="ur">اردو (Urdu)</option>
         <option value="bn">বাংলা (Bengali)</option>
       </select>
-      <button class="small-btn" id="bookmark-btn" title="Bookmark this page">⭐️ Bookmark</button>
-      <button class="theme-toggle small-btn" id="theme-toggle">🌙 Dark Mode</button>
+      
+      <div class="header-buttons-right">
+        <button class="small-btn" id="bookmark-btn" title="Bookmark this page">⭐️ Bookmark</button>
+        <button class="theme-toggle small-btn" id="theme-toggle">🌙 Dark Mode</button>
+      </div>
     </div>
+
+    <div class="header-nav">
+      <a id="show-about">About Us</a>
+      <a id="show-contact">Contact</a>
+      <a id="show-privacy">Privacy Policy</a>
+    </div>
+
     <h1 id="title">Easy Image Converter & Resizer</h1>
     <p class="domain-tagline">easyimagecr.in</p>
 
@@ -531,8 +613,7 @@
         <li>No image leaves your browser—guaranteed privacy.</li>
         <li>Supports all major image file types.</li>
         <li>Works instantly on any device or browser.</li>
-        <li>Powerful, simple, and ad/affiliate compliant.</li>
-      </ul>
+        </ul>
 
       <h3>Tips:</h3>
       <ul>
@@ -546,18 +627,42 @@
     <div class="note" id="privacy-note">All processing is local—no image leaves your browser.</div>
   </div>
 
-  <div class="madein">Made with ❤️ in 🇮🇳.</div>
   <footer>
+    <div class="madein">Made with ❤️ in 🇮🇳.</div>
     <div>
-      &copy; 2025 Easy Image Converter & Resizer (easyimagecr.in). All rights reserved. &nbsp; | &nbsp;
-      <a href="#" id="show-privacy" style="color:#2a72e7;text-decoration:underline;cursor:pointer;">Privacy Policy & Cookies</a>
-    </div>
+      &copy; 2025 Easy Image Converter & Resizer (easyimagecr.in). All rights reserved.
+      </div>
   </footer>
 
-  <div id="privacy-modal">
+  <div id="about-modal" class="modal-overlay">
+    <div class="modal-inner">
+      <h2>About Us</h2>
+      <div class="modal-content">
+        <p>Welcome to EasyImageCR.in! Our mission is to provide a fast, free, and private way for anyone to convert and resize images.</p>
+        <p>We believe powerful tools should be simple. This entire application runs in your web browser, meaning <strong>your files are never uploaded to a server</strong>. Your privacy is 100% protected.</p>
+        <p>This tool was built for students, professionals, artists, and anyone who needs a quick image adjustment without the hassle of opening heavy software. We hope you find it useful!</p>
+      </div>
+      <button class="close-modal">Close</button>
+    </div>
+  </div>
+
+  <div id="contact-modal" class="modal-overlay">
+    <div class="modal-inner">
+      <h2>Contact Us</h2>
+      <div class="modal-content">
+        <p>Have questions, feedback, or a bug to report? We'd love to hear from you!</p>
+        <p>You can reach our development team by email:</p>
+        <p><strong><a href="mailto:dev@easyimagecr.in">dev@easyimagecr.in</a></strong></p>
+        <p>We do our best to respond to all inquiries as quickly as possible.</p>
+      </div>
+      <button class="close-modal">Close</button>
+    </div>
+  </div>
+
+  <div id="privacy-modal" class="modal-overlay">
     <div class="modal-inner">
       <h2>Privacy Policy & Cookies</h2>
-      <div style="text-align:left;color:#292a2e;font-size:15px;padding-bottom:9px;line-height:1.7;">
+      <div class="modal-content">
         <p>
           <strong>Easy Image Converter & Resizer</strong> (“this site,” “we,” “our,” or “us”) operates as a free online tool for users worldwide. Your privacy is important to us.
         </p>
@@ -573,7 +678,7 @@
           By using this service, you consent to the terms above. For further details, consult the privacy policies of any third-party ad or analytics providers in use.
         </p>
       </div>
-      <button id="close-privacy">Close</button>
+      <button id="close-privacy" class="close-modal">Close</button>
     </div>
   </div>
 
@@ -718,7 +823,7 @@
         title: "Easy Image Converter & Resizer",
         drop: "اپنی تصویر یہاں ڈریگ کریں یا انتخاب کے لیے کلک کریں",
         width: "چوڑائی (px)",
-        height: "اونچائی (px)",
+        height: "اون차ئی (px)",
         ratio: "تناسب برقرار रखें",
         dimNote: "تناسب کے ساتھ: ایک باکس بدلیں، دوسرا خود بخود.<br>بدون: دونوں سیٹ کریں یا اصل کیلئے خالی چھوڑ دیں.",
         rotate: "🔄 90° گھمائیں",
@@ -1020,21 +1125,44 @@
       imgRotation = 0; imgFlippedH = false; imgFlippedV = false;
       imgUpload.value = "";
     };
-    document.getElementById('show-privacy').onclick = function(e) {
-      e.preventDefault();
-      document.getElementById('privacy-modal').style.display = 'block';
-      document.body.style.overflow = 'hidden';
-    };
-    document.getElementById('close-privacy').onclick = function() {
-      document.getElementById('privacy-modal').style.display = 'none';
-      document.body.style.overflow = '';
-    };
-    document.getElementById('privacy-modal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        document.getElementById('privacy-modal').style.display = 'none';
-        document.body.style.overflow = '';
+
+    // --- NEW: Generic Modal Logic ---
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
       }
+    }
+
+    function closeModal(modalElement) {
+      modalElement.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Open Triggers
+    document.getElementById('show-about').onclick = function(e) { e.preventDefault(); openModal('about-modal'); };
+    document.getElementById('show-contact').onclick = function(e) { e.preventDefault(); openModal('contact-modal'); };
+    document.getElementById('show-privacy').onclick = function(e) { e.preventDefault(); openModal('privacy-modal'); };
+
+    // Close Triggers (from button)
+    document.querySelectorAll('.close-modal').forEach(btn => {
+      btn.onclick = function() {
+        const modal = btn.closest('.modal-overlay');
+        closeModal(modal);
+      };
     });
+
+    // Close on overlay click
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeModal(this);
+        }
+      });
+    });
+    // --- End New Modal Logic ---
+
   </script>
 </body>
 </html>
