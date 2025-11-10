@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ultimate Free Image Converter & Resizer</title>
+  <title>Easy Image Converter & Resizer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* --- Basic Reset --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Roboto', Arial, sans-serif;
       background: linear-gradient(120deg, #97c1ff 0%, #00e3ae 100%);
@@ -17,15 +21,16 @@
       background: #161b22;
       color: #e3e3e3;
     }
+    /* --- Container (Desktop/Mobile) --- */
     .container {
-      max-width: 480px;
+      max-width: 800px; /* UPDATED: Was 480px, now wider for desktop */
       margin: 40px auto;
       background: #fff;
       border-radius: 18px;
       box-shadow: 0 4px 24px rgba(35,167,255,.14);
-      padding: 26px 18px 20px 18px;
+      padding: 26px 30px 20px 30px; /* UPDATED: Increased side padding */
       text-align: center;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s, color 0.2s, max-width 0.3s;
     }
     body.dark .container {
       background: #23272e;
@@ -35,7 +40,7 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
     .lang-select {
       padding: 4px 10px;
@@ -44,7 +49,7 @@
       background: #f3f8ff;
       border: 1px solid #b8e5fa;
       color: #2566a8;
-      margin-right: 10px;
+      margin-right: 0;
       width: auto;
       min-width: 0;
       max-width: 220px;
@@ -62,6 +67,18 @@
     body.dark h1 {
       color: #73d6ff;
     }
+    /* --- NEW: Domain Tagline --- */
+    .domain-tagline {
+      font-size: 1.1em;
+      font-weight: 500;
+      color: #1a5ac4;
+      margin: -8px 0 16px 0;
+      text-align: center;
+    }
+    body.dark .domain-tagline {
+      color: #88c8ff;
+    }
+    /* --- End New Style --- */
     .input-group {
       margin-bottom: 16px;
     }
@@ -132,7 +149,7 @@
     }
     .resize-group {
       display: flex;
-      flex-direction: column;
+      flex-direction: column; /* Mobile-first: stack items */
       align-items: center;
       gap: 8px;
       margin-bottom: 13px;
@@ -208,21 +225,17 @@
       margin: 2px 4px 2px 0;
       width: auto;
     }
-    #copy-btn {
-      margin-top: 7px;
-      margin-left: 8px;
-      padding: 7px 18px;
-      background: #19a856;
-      color: #fff;
-      border-radius: 6px;
-      border: none;
+    #bookmark-btn {
+      background: #ffc107;
+      color: #333;
       font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.2s;
     }
-    #copy-btn:active {
-      background: #0d7634;
+    body.dark #bookmark-btn {
+      background: #f0b90b;
+      color: #111;
+    }
+    #bookmark-btn:hover {
+      background: #ffd54f;
     }
     .formats-row {
       display: flex;
@@ -247,6 +260,43 @@
       color: #78bbfe;
       border-color: #6ca7ea;
     }
+    .how-to-use {
+      text-align: left;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background: #f3faff;
+      border-radius: 10px;
+    }
+    .how-to-use h2 {
+      text-align: center;
+      color: #2a72e7;
+      margin-top: 10px;
+    }
+    .how-to-use h3 {
+      color: #2a72e7;
+      margin-bottom: 5px;
+    }
+    .how-to-use p, .how-to-use li {
+      font-size: 15px;
+      margin-top: 0;
+      color: #333;
+      line-height: 1.5;
+    }
+    .how-to-use ul {
+      padding-left: 20px;
+    }
+    body.dark .how-to-use {
+      background: #243040;
+    }
+    body.dark .how-to-use h2 {
+      color: #73d6ff;
+    }
+    body.dark .how-to-use h3 {
+      color: #88c8ff;
+    }
+    body.dark .how-to-use p, body.dark .how-to-use li {
+      color: #c0ecff;
+    }
     .dimension-note {
       color: #888;
       font-size: 14px;
@@ -265,7 +315,7 @@
     }
     .theme-toggle {
       float: right;
-      margin: 0 0 10px 0;
+      margin: 0;
     }
     label {
       color: #2a72e7;
@@ -329,6 +379,36 @@
     }
     #privacy-modal a { color: #2a72e7; }
     #privacy-modal ul { padding-left: 18px; }
+
+    /* --- NEW: Responsive Media Query --- */
+    @media (min-width: 600px) {
+      /* On screens 600px and wider, arrange resize fields horizontally */
+      .resize-group {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end; /* Aligns bottoms of inputs and checkbox */
+        gap: 24px;
+        margin-bottom: 16px;
+      }
+      .resize-fields {
+        margin-bottom: 0;
+        gap: 16px;
+        max-width: none;
+      }
+      .resize-fields > div {
+        width: 120px; /* A bit more space for inputs */
+      }
+      .ratio-box {
+        margin-bottom: 8px; /* Lifts checkbox to align with inputs */
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .how-to-use {
+        padding: 15px 30px; /* More padding on desktop */
+      }
+    }
+    /* --- End Media Query --- */
+
   </style>
 </head>
 <body>
@@ -347,9 +427,12 @@
         <option value="ur">اردو (Urdu)</option>
         <option value="bn">বাংলা (Bengali)</option>
       </select>
+      <button class="small-btn" id="bookmark-btn" title="Bookmark this page">⭐️ Bookmark</button>
       <button class="theme-toggle small-btn" id="theme-toggle">🌙 Dark Mode</button>
     </div>
-    <h1 id="title">Ultimate Free Image Converter & Resizer</h1>
+    <h1 id="title">Easy Image Converter & Resizer</h1>
+    <p class="domain-tagline">easyimagecr.in</p>
+
     <div class="input-group">
       <div class="drop-area" id="drop-area">
         <span id="drop-text">Drag & drop your image or click to select</span>
@@ -398,7 +481,6 @@
         <option value="image/tiff">TIFF</option>
       </select>
       <button id="img-convert">Resize & Download</button>
-      <button id="copy-btn" title="Copy image to clipboard">📋 Copy to Clipboard</button>
     </div>
     <div class="formats-row">
       <div class="format-card">PNG ⇄ JPG</div>
@@ -408,6 +490,45 @@
       <div class="format-card">GIF ⇄ PNG</div>
       <div class="format-card">TIFF ⇄ JPG</div>
     </div>
+
+    <div class="how-to-use">
+      <h2>How to Use Easy Image Converter & Resizer</h2>
+      
+      <h3>Upload Your Image:</h3>
+      <p>Drag and drop your image file into the upload area, or click to browse and select from your computer. We support JPG, PNG, WEBP, BMP, GIF, and TIFF formats.</p>
+
+      <h3>Preview Instantly:</h3>
+      <p>See a live preview of your chosen photo. View the file name, size, and original resolution.</p>
+
+      <h3>Adjust Image Dimensions:</h3>
+      <p>Type your desired Width (px) and Height (px). Enable “Maintain Ratio” to keep your image proportional automatically, or disable it to set custom dimensions.</p>
+
+      <h3>Rotate or Flip as Needed:</h3>
+      <p>Instantly rotate your image by 90°, or flip horizontally/vertically using the quick buttons.</p>
+
+      <h3>Change Image Quality or Format:</h3>
+      <p>Use the quality slider to compress or improve quality. Choose from multiple output formats: JPG, PNG, WEBP, BMP, GIF, or TIFF.</p>
+
+      <h3>Download Your Converted Image:</h3>
+      <p>Click “Resize & Download” to save your resized or converted image to your device. All processing is private and local—your files are never uploaded.</p>
+
+      <h2>Why Use Easy Image Converter & Resizer?</h2>
+      <ul>
+        <li>100% Free, no signup or watermark.</li>
+        <li>No image leaves your browser—guaranteed privacy.</li>
+        <li>Supports all major image file types.</li>
+        <li>Works instantly on any device or browser.</li>
+        <li>Powerful, simple, and ad/affiliate compliant.</li>
+      </ul>
+
+      <h3>Tips:</h3>
+      <ul>
+        <li>For best results, use standard aspect ratios for social media or web.</li>
+        <li>No need to install any software—everything runs in your browser.</li>
+      </ul>
+    </div>
+
+
     <canvas id="img-canvas" style="display:none;"></canvas>
     <div class="note" id="privacy-note">All processing is local—no image leaves your browser.</div>
   </div>
@@ -415,24 +536,25 @@
   <div class="madein">Made with ❤️ in 🇮🇳.</div>
   <footer>
     <div>
-      &copy; 2025 Ultimate Free Image Converter & Resizer. All rights reserved. &nbsp; | &nbsp;
-      <a href="#" id="show-privacy" style="color:#2a72e7;text-decoration:underline;cursor:pointer;">Privacy Policy</a>
+      &copy; 2025 Easy Image Converter & Resizer (easyimagecr.in). All rights reserved. &nbsp; | &nbsp;
+      <a href="#" id="show-privacy" style="color:#2a72e7;text-decoration:underline;cursor:pointer;">Privacy Policy & Cookies</a>
     </div>
   </footer>
 
   <div id="privacy-modal">
     <div class="modal-inner">
-      <h2>Privacy Policy</h2>
+      <h2>Privacy Policy & Cookies</h2>
       <div style="text-align:left;color:#292a2e;font-size:15px;padding-bottom:9px;line-height:1.7;">
         <p>
-          <strong>Ultimate Free Image Converter & Resizer</strong> (“this site,” “we,” “our,” or “us”) operates as a free online tool for users worldwide. Your privacy is important to us.
+          <strong>Easy Image Converter & Resizer</strong> (“this site,” “we,” “our,” or “us”) operates as a free online tool for users worldwide. Your privacy is important to us.
         </p>
         <ul>
           <li><b>Local Processing:</b> All image processing is done within your browser. Your images and contents never leave your device or get uploaded to our servers.</li>
           <li><b>Ads & Analytics:</b> This site may show advertisements (such as Google AdSense) and/or use web analytics to track site usage (e.g., Google Analytics). <b>These third-party services may use cookies, browser storage, or similar methods to collect anonymous usage statistics, deliver targeted ads, or track ad clicks.</b></li>
-          <li><b>Affiliate Links:</b> We may include affiliate links. If you click them, we may earn commissions at no cost to you.</li>
+          <li><b>Cookies:</b> We use cookies to ensure basic website functionality. Our third-party partners (like Google AdSense and Google Analytics) also use cookies to serve personalized ads and analyze traffic. By using this site, you consent to the use of such cookies. You can manage cookie preferences in your browser settings.</li>
+          <li><b>Affiliate Links:</b> We may include affiliate links. If you click them, we may earn commissions at no cost to you. This does not affect your use of the tool.</li>
           <li><b>No Personal Data Required:</b> We do not require you to create an account or provide personal information to use our tools.</li>
-          <li><b>Contact:</b> For privacy concerns or requests, please contact us at <a href="mailto:support@ultimateimagefree.com">support@ultimateimagefree.com</a>.</li>
+          <li><b>Contact:</b> For privacy concerns or requests, please contact us at <a href="mailto:dev@easyimagecr.in">dev@easyimagecr.in</a>.</li>
         </ul>
         <p>
           By using this service, you consent to the terms above. For further details, consult the privacy policies of any third-party ad or analytics providers in use.
@@ -445,7 +567,7 @@
   <script>
     const LT = {
       en: {
-        title: "Ultimate Free Image Converter & Resizer",
+        title: "Easy Image Converter & Resizer",
         drop: "Drag & drop your image or click to select",
         width: "Width (px)",
         height: "Height (px)",
@@ -457,11 +579,10 @@
         reset: "🗑 Clear All",
         quality: "Quality",
         download: "Resize & Download",
-        copy: "📋 Copy to Clipboard",
         privacy: "All processing is local—no image leaves your browser."
       },
       nl: {
-        title: "Ultieme Gratis Afbeelding Converter & Resizer",
+        title: "Easy Image Converter & Resizer",
         drop: "Sleep je afbeelding hierheen of klik om te selecteren",
         width: "Breedte (px)",
         height: "Hoogte (px)",
@@ -473,11 +594,10 @@
         reset: "🗑 Alles wissen",
         quality: "Kwaliteit",
         download: "Converteren & Downloaden",
-        copy: "📋 Kopiëren naar Klembord",
         privacy: "Alle verwerking is lokaal – je afbeelding verlaat je browser niet."
       },
       es: {
-        title: "Convertidor y Redimensionador de Imágenes Gratis",
+        title: "Easy Image Converter & Resizer",
         drop: "Arrastra tu imagen aquí o haz clic para seleccionar",
         width: "Ancho (px)",
         height: "Alto (px)",
@@ -489,11 +609,10 @@
         reset: "🗑 Limpiar Todo",
         quality: "Calidad",
         download: "Redimensionar & Descargar",
-        copy: "📋 Copiar al Portapapeles",
         privacy: "El procesamiento es local: tu imagen no sale del navegador."
       },
       fr: {
-        title: "Convertisseur & Redimensionneur d’Images Gratuit",
+        title: "Easy Image Converter & Resizer",
         drop: "Glissez-déposez ou cliquez pour choisir une image",
         width: "Largeur (px)",
         height: "Hauteur (px)",
@@ -505,11 +624,10 @@
         reset: "🗑 Tout Effacer",
         quality: "Qualité",
         download: "Redimensionner & Télécharger",
-        copy: "📋 Copier dans le Presse-papiers",
         privacy: "Tout traitement est local : l’image ne quitte pas votre navigateur."
       },
       pt: {
-        title: "Conversor e Redimensionador de Imagem Grátis",
+        title: "Easy Image Converter & Resizer",
         drop: "Arraste sua imagem ou clique para selecionar",
         width: "Largura (px)",
         height: "Altura (px)",
@@ -521,11 +639,10 @@
         reset: "🗑 Limpar Tudo",
         quality: "Qualidade",
         download: "Redimensionar & Baixar",
-        copy: "📋 Copiar para Área de Transferência",
         privacy: "Todo processamento é local – sua imagem não sai do navegador."
       },
       it: {
-        title: "Convertitore e Ridimensionatore Immagini Gratis",
+        title: "Easy Image Converter & Resizer",
         drop: "Trascina qui l’immagine o clicca per selezionare",
         width: "Larghezza (px)",
         height: "Altezza (px)",
@@ -537,11 +654,10 @@
         reset: "🗑 Cancella Tutto",
         quality: "Qualità",
         download: "Ridimensiona & Scarica",
-        copy: "📋 Copia negli Appunti",
         privacy: "Tutto il processamento è locale: l'immagine non lascia il browser."
       },
       ko: {
-        title: "궁극의 무료 이미지 변환 & 리사이저",
+        title: "Easy Image Converter & Resizer",
         drop: "이미지를 드래그하거나 클릭해서 선택하세요",
         width: "너비 (px)",
         height: "높이 (px)",
@@ -553,11 +669,10 @@
         reset: "🗑 전체 초기화",
         quality: "품질",
         download: "변환 및 다운로드",
-        copy: "📋 클립보드에 복사",
         privacy: "모든 처리는 로컬 – 이미지가 브라우저를 벗어나지 않습니다."
       },
       ja: {
-        title: "究極の無料画像コンバーター＆リサイザー",
+        title: "Easy Image Converter & Resizer",
         drop: "画像をドラッグ＆ドロップまたはクリックして選択",
         width: "幅 (px)",
         height: "高さ (px)",
@@ -569,12 +684,11 @@
         reset: "🗑 すべてクリア",
         quality: "品質",
         download: "変換＆ダウンロード",
-        copy: "📋 クリップボードにコピー",
         privacy: "すべての処理はローカル。画像はブラウザ外に送信されません。"
       },
       hi: {
-        title: "फ्री इमेज कन्वर्टर व रिसाइज़र",
-        drop: "अपनी छवि यहाँ ड्रैग/ड्रॉप करें या चयन के लिए क्लिक करें",
+        title: "Easy Image Converter & Resizer",
+        drop: " अपनी छवि यहाँ ड्रैग/ड्रॉप करें या चयन के लिए क्लिक करें",
         width: "चौड़ाई (px)",
         height: "ऊँचाई (px)",
         ratio: "आनुपात बनाए रखें",
@@ -585,15 +699,14 @@
         reset: "🗑 सब हटाएँ",
         quality: "गुणवत्ता",
         download: "डाउनलोड करें",
-        copy: "📋 क्लिपबोर्ड पर कॉपी करें",
         privacy: "सारा प्रोसेस आपके ब्राउज़र में होता है — आपकी छवि बाहर नहीं जाती।"
       },
       ur: {
-        title: "فری امیج کنورٹر اور ری سائزَر",
+        title: "Easy Image Converter & Resizer",
         drop: "اپنی تصویر یہاں ڈریگ کریں یا انتخاب کے لیے کلک کریں",
         width: "چوڑائی (px)",
         height: "اونچائی (px)",
-        ratio: "تناسب برقرار رکھیں",
+        ratio: "تناسب برقرار रखें",
         dimNote: "تناسب کے ساتھ: ایک باکس بدلیں، دوسرا خود بخود.<br>بدون: دونوں سیٹ کریں یا اصل کیلئے خالی چھوڑ دیں.",
         rotate: "🔄 90° گھمائیں",
         flipH: "⟷ اُفقی پلٹیں",
@@ -601,11 +714,10 @@
         reset: "🗑 سب صاف کریں",
         quality: "کوالٹی",
         download: "ریسائز اور ڈاؤن لوڈ",
-        copy: "📋 کلپ بورڈ پر نقل کریں",
-        privacy: "تمام پراسیسنگ مقامی طور پر — آپ کی تصویر براؤزر سے باہر نہیں جاتی۔"
+        privacy: "تمام پراSESSنگ مقامی طور پر — آپ کی تصویر براؤزر سے باہر نہیں جاتی۔"
       },
       bn: {
-        title: "ফ্রি ইমেজ কনভার্টার ও রিসাইজার",
+        title: "Easy Image Converter & Resizer",
         drop: "আপনার ছবি টানুন বা ক্লিক করে দিন",
         width: "প্রস্থ (px)",
         height: "উচ্চতা (px)",
@@ -617,7 +729,6 @@
         reset: "🗑 সব মুছুন",
         quality: "কোয়ালিটি",
         download: "ডাউনলোড করুন",
-        copy: "📋 ক্লিপবোর্ডে কপি",
         privacy: "সব প্রসেসিং লোকাল – আপনার ছবি ব্রাউজার ছাড়ে না।"
       }
     };
@@ -635,12 +746,11 @@
       document.getElementById('reset-btn').textContent = LT[lang].reset;
       document.querySelector('.lbl-quality').innerHTML = LT[lang].quality + ' <span id="quality-value">' + document.getElementById('quality-value').textContent + '</span>%';
       document.getElementById('img-convert').textContent = LT[lang].download;
-      document.getElementById('copy-btn').textContent = LT[lang].copy;
       document.getElementById('privacy-note').textContent = LT[lang].privacy;
     }
     document.getElementById('lang-select').addEventListener('change', function(e) {
       setLangText(e.target.value);
-      updateThemeButton(); // Keeps dark mode button in sync if changed after theme
+      updateThemeButton();
     });
     // --- Dark Mode fix ---
     const themeToggle = document.getElementById('theme-toggle');
@@ -656,6 +766,13 @@
       updateThemeButton();
     };
     updateThemeButton();
+
+    // --- Bookmark Button Logic ---
+    const bookmarkBtn = document.getElementById('bookmark-btn');
+    bookmarkBtn.onclick = function() {
+      alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Cmd+D' : 'Ctrl+D') + ' to bookmark this page!');
+    };
+
     setLangText(document.getElementById('lang-select').value);
     // --- Drag & Drop Logic ---
     const dropArea = document.getElementById('drop-area');
@@ -702,7 +819,6 @@
     const imgHeightInput = document.getElementById('img-height');
     const maintainRatio = document.getElementById('maintain-ratio');
     const imgConvertBtn = document.getElementById('img-convert');
-    const copyBtn = document.getElementById('copy-btn');
     const imgCanvas = document.getElementById('img-canvas');
     const imgCtx = imgCanvas.getContext('2d');
     const imgPreview = document.getElementById('img-preview');
@@ -879,42 +995,7 @@
       };
       reader.readAsDataURL(file);
     }
-    copyBtn.onclick = async function () {
-      if (!currentImage) {
-        alert("Please upload and process an image before copying.");
-        return;
-      }
-      let w = originalWidth, h = originalHeight;
-      let newW = parseInt(imgWidthInput.value, 10);
-      let newH = parseInt(imgHeightInput.value, 10);
-      if (!newW && !newH) { newW = w; newH = h; }
-      else if (maintainRatio.checked) {
-        if (newW && !newH) newH = Math.round((h / w) * newW);
-        if (!newW && newH) newW = Math.round((w / h) * newH);
-      }
-      let finalW = newW, finalH = newH;
-      if (imgRotation % 180 !== 0) { let t = finalW; finalW = finalH; finalH = t; }
-      imgCanvas.width = finalW;
-      imgCanvas.height = finalH;
-      imgCtx.save();
-      imgCtx.translate(finalW / 2, finalH / 2);
-      imgCtx.rotate(imgRotation * Math.PI / 180);
-      imgCtx.scale(imgFlippedH ? -1 : 1, imgFlippedV ? -1 : 1);
-      imgCtx.drawImage(currentImage, -newW / 2, -newH / 2, newW, newH);
-      imgCtx.restore();
-
-      try {
-        imgCanvas.toBlob(async (blob) => {
-          await navigator.clipboard.write([
-            new ClipboardItem({ [blob.type]: blob })
-          ]);
-          copyBtn.textContent = "✅ Copied!";
-          setTimeout(() => copyBtn.textContent = LT[document.getElementById('lang-select').value].copy, 1200);
-        }, imgFormatSelect.value, imgQualityInput.value / 100);
-      } catch (e) {
-        alert("Sorry, Copy to Clipboard is not supported in this browser or context.");
-      }
-    };
+    
     resetBtn.onclick = function () {
       currentFile = null;
       currentImage = null;
