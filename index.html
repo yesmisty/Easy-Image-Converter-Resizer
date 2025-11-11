@@ -24,7 +24,7 @@
     }
     body {
       font-family: 'Roboto', Arial, sans-serif;
-      background: linear-gradient(120deg, #97c1ff 0%, #00e3ae 100%);
+      background: #f9faff;
       margin: 0;
       min-height: 100vh;
       transition: background 0.2s, color 0.2s;
@@ -35,69 +35,59 @@
     }
     /* --- Container (Desktop/Mobile) --- */
     .container {
-      max-width: 800px; /* UPDATED: Was 480px, now wider for desktop */
+      max-width: 800px; 
       margin: 40px auto;
       background: #fff;
       border-radius: 18px;
-      box-shadow: 0 4px 24px rgba(35,167,255,.14);
-      padding: 26px 30px 20px 30px; /* UPDATED: Increased side padding */
+      box-shadow: 0 6px 20px rgba(50, 50, 93, 0.1), 0 3px 7px rgba(0, 0, 0, 0.07);
+      padding: 26px 30px 20px 30px; 
       text-align: center;
-      transition: background 0.2s, color 0.2s, max-width 0.3s;
+      transition: background 0.2s, color 0.2s, max-width 0.3s, box-shadow 0.2s;
     }
     body.dark .container {
       background: #23272e;
       color: #eee;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), 0 3px 7px rgba(0, 0, 0, 0.15);
     }
     .lang-row {
       display: flex;
-      /* MODIFIED: Changed flex-end to space-between */
-      justify-content: space-between; 
+      justify-content: flex-end; 
       align-items: center;
       gap: 12px;
     }
-    /* NEW: Wrapper for right-side buttons */
     .header-buttons-right {
       display: flex;
       gap: 12px;
     }
-    .lang-select {
-      padding: 4px 10px;
-      font-size: 15px;
-      border-radius: 5px;
-      background: #f3f8ff;
-      border: 1px solid #b8e5fa;
-      color: #2566a8;
-      margin-right: 0;
-      width: auto;
-      min-width: 0;
-      max-width: 220px;
-    }
-    body.dark .lang-select {
-      background: #20272e;
-      color: #a2e5ff;
-      border-color: #225275;
-    }
-    /* --- NEW: Header Navigation --- */
+
+    /* --- Header Navigation --- */
     .header-nav {
       text-align: center;
-      /* MODIFIED: Removed negative top margin, added positive top margin */
       margin: 10px 0 15px 0;
       display: flex;
       justify-content: center;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 8px; 
     }
     .header-nav a {
       text-decoration: none;
       color: #2a72e7;
       font-weight: 500;
-      font-size: 15px;
+      font-size: 14px; 
       cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background-color 0.2s;
     }
     body.dark .header-nav a {
       color: #73d6ff;
     }
     .header-nav a:hover {
-      text-decoration: underline;
+      text-decoration: none;
+      background-color: #f0f6ff;
+    }
+    body.dark .header-nav a:hover {
+      background-color: #2a3038;
     }
     /* --- End New Style --- */
     h1 {
@@ -108,7 +98,7 @@
     body.dark h1 {
       color: #73d6ff;
     }
-    /* --- NEW: Domain Tagline --- */
+    /* --- Domain Tagline --- */
     .domain-tagline {
       font-size: 1.1em;
       font-weight: 500;
@@ -301,6 +291,8 @@
       color: #78bbfe;
       border-color: #6ca7ea;
     }
+    
+    /* MODIFIED: .how-to-use section */
     .how-to-use {
       text-align: left;
       margin-top: 20px;
@@ -312,19 +304,18 @@
       text-align: center;
       color: #2a72e7;
       margin-top: 10px;
+      margin-bottom: 16px;
     }
     .how-to-use h3 {
       color: #2a72e7;
       margin-bottom: 5px;
+      margin-top: 20px;
     }
     .how-to-use p, .how-to-use li {
       font-size: 15px;
       margin-top: 0;
       color: #333;
-      line-height: 1.5;
-    }
-    .how-to-use ul {
-      padding-left: 20px;
+      line-height: 1.6;
     }
     body.dark .how-to-use {
       background: #243040;
@@ -338,6 +329,8 @@
     body.dark .how-to-use p, body.dark .how-to-use li {
       color: #c0ecff;
     }
+    /* END MODIFIED: .how-to-use */
+    
     .dimension-note {
       color: #888;
       font-size: 14px;
@@ -392,86 +385,101 @@
     body.dark footer {
       color: #99b2d3;
     }
-    /* --- MODIFIED: Generic Modal Styles --- */
-    .modal-overlay {
-      display:none;
-      position:fixed;
-      z-index:4000;
-      left:0;top:0;
-      width:100vw;height:100vh;
-      background:rgba(40,60,90,0.23);
-      backdrop-filter: blur(2px);
-    }
-    .modal-overlay .modal-inner {
-      background:#fff;
-      padding:28px 20px 20px 20px;
-      max-width:480px;
-      box-shadow:0 4px 38px #1112;
-      position:relative;
-      top:50%;left:50%;
-      transform:translate(-50%,-50%);
-      border-radius:13px;
-      /* MODAL FIX: Add flex column layout and max-height */
-      max-height: 85vh;
-      display: flex;
-      flex-direction: column;
-    }
-    body.dark .modal-overlay .modal-inner {
-      background: #23272e;
-      color: #eee;
-    }
-    /* MODAL FIX: Make content scrollable */
-    .modal-content {
-      text-align:left;
-      color:#292a2e;
-      font-size:15px;
-      padding-bottom:9px;
-      line-height:1.7;
-      /* MODAL FIX: Add overflow-y and padding for scrollbar */
-      overflow-y: auto;
-      padding-right: 10px; /* Space for scrollbar */
-    }
-    body.dark .modal-content {
-      color: #c0ecff;
-    }
-    body.dark .modal-content a,
-    body.dark .modal-overlay a {
-      color: #73d6ff;
-    }
-    .modal-overlay h2 {
-      color:#2673e7;
-      margin-top:0;
-      flex-shrink: 0; /* MODAL FIX: Prevent shrinking */
-    }
-    body.dark .modal-overlay h2 {
-      color: #73d6ff;
-    }
-    .modal-overlay button {
-      background:#2a72e7;
-      color:#fff;
-      padding:8px 22px;
-      border:none;
-      border-radius:6px;
-      font-weight:bold;
-      cursor:pointer;
-      /* MODAL FIX: Adjust margin and prevent shrinking */
-      margin-top: 15px;
-      flex-shrink: 0;
-    }
-    body.dark .modal-overlay button {
-      background: #339fc4;
-    }
-    .modal-overlay a { color: #2a72e7; }
-    .modal-overlay ul { padding-left: 18px; }
-    /* --- End Modal Styles --- */
 
-    /* --- NEW: Responsive Media Query --- */
+    /* --- In-Page View Styles --- */
+    #page-content-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 6px 20px rgba(50, 50, 93, 0.1), 0 3px 7px rgba(0, 0, 0, 0.07);
+      padding: 26px 30px 20px 30px;
+      text-align: left;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    body.dark #page-content-container {
+      background: #23272e;
+      color: #c0ecff;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), 0 3px 7px rgba(0, 0, 0, 0.15);
+    }
+
+    #page-content-container h2 {
+      color: #2a72e7;
+      text-align: center;
+      margin-top: 0;
+    }
+    
+    #page-content-container h3 {
+      color: #2a72e7;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+
+    body.dark #page-content-container h2 {
+      color: #73d6ff;
+    }
+    
+    body.dark #page-content-container h3 {
+      color: #88c8ff;
+    }
+    
+    #page-content-container p, #page-content-container li {
+      margin-bottom: 1em;
+    }
+    #page-content-container ul {
+      padding-left: 20px;
+    }
+    
+    #page-content-container a {
+      color: #2a72e7;
+    }
+    
+    body.dark #page-content-container a {
+      color: #73d6ff;
+    }
+
+    #back-to-tool-btn {
+      background: #eef6fe;
+      color: #2a72e7;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    body.dark #back-to-tool-btn {
+      background: #2a3038;
+      color: #73d6ff;
+    }
+
+    .page-section {
+      display: none;
+    }
+    /* --- End In-Page View Styles --- */
+
+    /* --- Compression Mode Styles --- */
+    #target-size-mode-ui {
+      display: none; /* Hidden by default */
+      max-width: 280px;
+      margin: 0 auto;
+    }
+    #target-size-note {
+      font-size: 13px;
+      color: #888;
+      margin-top: -5px;
+    }
+    body.dark #target-size-note {
+      color: #99b2d3;
+    }
+    /* --- End Compression Mode Styles --- */
+
+
+    /* --- Responsive Media Query --- */
     @media (min-width: 600px) {
-      /* On screens 600px and wider, arrange resize fields horizontally */
       .resize-group {
         flex-direction: row;
         justify-content: center;
-        align-items: flex-end; /* Aligns bottoms of inputs and checkbox */
+        align-items: flex-end; 
         gap: 24px;
         margin-bottom: 16px;
       }
@@ -481,15 +489,15 @@
         max-width: none;
       }
       .resize-fields > div {
-        width: 120px; /* A bit more space for inputs */
+        width: 120px; 
       }
       .ratio-box {
-        margin-bottom: 8px; /* Lifts checkbox to align with inputs */
+        margin-bottom: 8px; 
         padding-top: 10px;
         padding-bottom: 10px;
       }
       .how-to-use {
-        padding: 15px 30px; /* More padding on desktop */
+        padding: 15px 30px; 
       }
     }
     /* --- End Media Query --- */
@@ -499,20 +507,6 @@
 <body>
   <div class="container">
     <div class="lang-row">
-      <select id="lang-select" class="lang-select" aria-label="Language">
-        <option value="en">English</option>
-        <option value="nl">Nederlands (Dutch)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="fr">Français (French)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="it">Italiano (Italian)</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="ur">اردو (Urdu)</option>
-        <option value="bn">বাংলা (Bengali)</option>
-      </select>
-      
       <div class="header-buttons-right">
         <button class="small-btn" id="bookmark-btn" title="Bookmark this page">⭐️ Bookmark</button>
         <button class="theme-toggle small-btn" id="theme-toggle">🌙 Dark Mode</button>
@@ -521,8 +515,11 @@
 
     <div class="header-nav">
       <a id="show-about">About Us</a>
+      <a id="show-faq">❓ FAQ</a>
       <a id="show-contact">Contact</a>
       <a id="show-privacy">Privacy Policy</a>
+      <a id="show-terms">Terms of Use</a>
+      <a id="show-disclaimer">Disclaimer</a>
     </div>
 
     <h1 id="title">Easy Image Converter & Resizer</h1>
@@ -564,9 +561,9 @@
       <button class="small-btn" id="flip-v-btn">⇵ Flip V</button>
       <button class="small-btn" id="reset-btn">🗑 Clear All</button>
     </div>
+    
     <div class="input-group">
-      <label for="img-quality" class="lbl-quality">Quality <span id="quality-value">90</span>%</label>
-      <input type="range" id="img-quality" min="10" max="100" value="90">
+      <label for="img-format">Format</label>
       <select id="img-format">
         <option value="image/jpeg">JPEG</option>
         <option value="image/png">PNG</option>
@@ -575,8 +572,31 @@
         <option value="image/gif">GIF</option>
         <option value="image/tiff">TIFF</option>
       </select>
+    </div>
+
+    <div class="input-group">
+      <label for="compression-mode">Compression Mode</label>
+      <select id="compression-mode">
+        <option value="quality">Quality</option>
+        <option value="target-size">Target Size (KB)</option>
+      </select>
+    </div>
+
+    <div id="quality-mode-ui" class="input-group">
+      <label for="img-quality" class="lbl-quality">Quality <span id="quality-value">90</span>%</label>
+      <input type="range" id="img-quality" min="10" max="100" value="90">
+    </div>
+
+    <div id="target-size-mode-ui" class="input-group">
+      <label for="target-size">Target Size (KB)</label>
+      <input type="number" id="target-size" min="1" placeholder="e.g., 100">
+      <div id="target-size-note">Only applies to JPEG and WEBP formats.</div>
+    </div>
+    
+    <div class="input-group">
       <button id="img-convert">Resize & Download</button>
     </div>
+    
     <div class="formats-row">
       <div class="format-card">PNG ⇄ JPG</div>
       <div class="format-card">JPG ⇄ WEBP</div>
@@ -587,46 +607,146 @@
     </div>
 
     <div class="how-to-use">
-      <h2>How to Use Easy Image Converter & Resizer</h2>
+      <h2>Your Free Online Image Converter & Resizer</h2>
+      <p>
+        Welcome to the easiest way to **resize and convert images** online. Our tool helps you quickly adjust photo dimensions, **compress images**, and **change formats** like JPG, PNG, WEBP, and more. Everything is 100% free, private, and runs in your browser—no uploads required.
+      </p>
       
-      <h3>Upload Your Image:</h3>
-      <p>Drag and drop your image file into the upload area, or click to browse and select from your computer. We support JPG, PNG, WEBP, BMP, GIF, and TIFF formats.</p>
+      <h3>1. Upload or Drop Your Image</h3>
+      <p>
+        Start by dragging your file onto the drop zone, or click to browse. We support all common formats, making us a versatile **JPG converter**, **PNG converter**, and **WEBP converter** all in one.
+      </p>
 
-      <h3>Preview Instantly:</h3>
-      <p>See a live preview of your chosen photo. View the file name, size, and original resolution.</p>
+      <h3>2. Resize, Rotate, or Flip</h3>
+      <p>
+        Need to **change image size**? Enter a new width or height in pixels (px). Check "Maintain Ratio" to avoid stretching. You can also **resize JPG**, **resize PNG**, or any other format. Use the buttons to quickly **rotate image** 90° or **flip image** horizontally or vertically.
+      </p>
 
-      <h3>Adjust Image Dimensions:</h3>
-      <p>Type your desired Width (px) and Height (px). Enable “Maintain Ratio” to keep your image proportional automatically, or disable it to set custom dimensions.</p>
+      <h3>3. Choose Format & Compression</h3>
+      <p>
+        Select your output format from the dropdown (e.g., **convert PNG to JPG**, **WEBP to PNG**, or **JPG to WEBP**). To **compress image** size, use the "Quality" slider. For precise control, switch to "Target Size (KB)" mode to get a specific file size for your JPEG or WEBP files.
+      </p>
 
-      <h3>Rotate or Flip as Needed:</h3>
-      <p>Instantly rotate your image by 90°, or flip horizontally/vertically using the quick buttons.</p>
-
-      <h3>Change Image Quality or Format:</h3>
-      <p>Use the quality slider to compress or improve quality. Choose from multiple output formats: JPG, PNG, WEBP, BMP, GIF, or TIFF.</p>
-
-      <h3>Download Your Converted Image:</h3>
-      <p>Click “Resize & Download” to save your resized or converted image to your device. All processing is private and local—your files are never uploaded.</p>
-
-      <h2>Why Use Easy Image Converter & Resizer?</h2>
-      <ul>
-        <li>100% Free, no signup or watermark.</li>
-        <li>No image leaves your browser—guaranteed privacy.</li>
-        <li>Supports all major image file types.</li>
-        <li>Works instantly on any device or browser.</li>
-        </ul>
-
-      <h3>Tips:</h3>
-      <ul>
-        <li>For best results, use standard aspect ratios for social media or web.</li>
-        <li>No need to install any software—everything runs in your browser.</li>
-      </ul>
+      <h3>4. Download Your New Image</h3>
+      <p>
+        Click "Resize & Download." Your new, converted, or resized image will be saved to your computer instantly. Remember, all processing is done locally for complete privacy.
+      </p>
     </div>
-
-
     <canvas id="img-canvas" style="display:none;"></canvas>
     <div class="note" id="privacy-note">All processing is local—no image leaves your browser.</div>
   </div>
 
+
+  <div id="page-content-container" style="display: none;">
+  
+    <button id="back-to-tool-btn" class="small-btn">⬅️ Back to Tool</button>
+    
+    <div id="about-content" class="page-section">
+      <h2>About Us</h2>
+      <p>Welcome to EasyImageCR.in! Our mission is to provide a fast, free, and private way for anyone to convert and resize images.</p>
+      <p>We believe powerful tools should be simple. This entire application runs directly in your web browser, meaning your files are never uploaded to a server.</p>
+      <p>This tool was built for students, professionals, artists, and anyone who needs a quick image adjustment without the hassle of opening heavy software. We hope you find it useful!</p>
+    </div>
+    
+    <div id="faq-content" class="page-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <h3>Is any image uploaded to your server?</h3>
+      <p>No. All editing happens inside your browser using HTML5 Canvas and Web APIs. Your images never leave your device.</p>
+      
+      <h3>Why do I see ads?</h3>
+      <p>Ads (via Google AdSense) help keep EasyImageCR free. Ads may use cookies to measure performance and personalize content where permitted by law and your consent settings.</p>
+      
+      <h3>Do you support bulk processing?</h3>
+      <p>Yes. Use the Bulk Processor tab to resize/convert many images with one set of options. A thumbnail preview appears after file selection.</p>
+      
+      <h3>Can I compress to a specific file size?</h3>
+      <p>Yes. Choose Target size (KB) to automatically adjust quality for JPEG/WebP to meet a target file size.</p>
+      
+      <h3>Which formats are supported?</h3>
+      <p>JPEG, PNG, WebP, GIF, BMP, and TIFF for export. (HEIC/AVIF planned.)</p>
+      
+      <h3>Is this free for commercial use?</h3>
+      <p>Yes. You can edit personal or business images. Please respect intellectual property rights for content you process.</p>
+      
+      <h3>Will you add offline mode?</h3>
+      <p>Yes. A Service Worker is planned so the app can be installed and used offline after the first load.</p>
+      
+      <h3>How do I contact support?</h3>
+      <p>Email us at <a href="mailto:dev@easyimagecr.in">dev@easyimagecr.in</a>. We usually reply within 24–48 hours.</p>
+    </div>
+  
+    <div id="contact-content" class="page-section">
+      <h2>Contact Us</h2>
+      <p>Have questions, feedback, or a bug to report? We'd love to hear from you!</p>
+      <p>You can reach our development team by email:</p>
+      <p><strong><a href="mailto:dev@easyimagecr.in">dev@easyimagecr.in</a></strong></p>
+      <p>We do our best to respond to all inquiries as quickly as possible.</p>
+    </div>
+    
+    <div id="privacy-content" class="page-section">
+      <h2>Privacy Policy</h2>
+      <p><em>Last updated: 11/11/2025</em></p>
+      <p>EasyImageCR ("we", "us", or "our") provides client‑side image utilities at easyimagecr.in. We respect your privacy and are committed to explaining clearly how information is handled on this website.</p>
+      
+      <h3>1. What data we process</h3>
+      <ul>
+        <li><strong>Images you load:</strong> Images you open in EasyImageCR are processed locally in your browser using HTML5 Canvas and related APIs. We do not upload, transmit, or store your images on our servers.</li>
+        <li><strong>Device & usage data (analytics):</strong> If enabled, we may use analytics to understand traffic (pages visited, device type, approximate location derived from IP by the analytics provider). This data is aggregated and not used to identify you personally.</li>
+        <li><strong>Advertising data (AdSense):</strong> We may show ads to support the service. Ad vendors may use cookies or local storage to deliver, measure, and personalize ads where permitted.</li>
+      </ul>
+
+      <h3>2. Cookies & local storage</h3>
+      <p>Our tools may store non‑personal settings (e.g., last used tab or quality value) in your browser’s localStorage so the app remembers your preferences. Third‑party services (analytics/ads) may set cookies for measurement or personalization in line with your consent choices.</p>
+
+      <h3>3. Advertising (Google AdSense)</h3>
+      <p>We partner with Google AdSense to display ads. Google and its partners may use cookies and similar technologies to serve ads based on prior visits to this and/or other websites.</p>
+      <p>Users may opt out of personalized advertising by visiting <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Ads Settings</a>. You can also review <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses information from sites or apps that use its services</a> and the list of <a href="https://support.google.com/admanager/answer/9012903" target="_blank" rel="noopener noreferrer">Google certified ad technology vendors</a>.</p>
+      <p>We adhere to Google’s publisher policies and program policies, including restrictions on prohibited content and invalid traffic.</p>
+
+      <h3>4. Analytics</h3>
+      <p>We may use Google Analytics to measure usage trends (e.g., which pages are most visited). IP anonymization and data retention limits may be enabled where available. Analytics cookies help us improve the site; you can opt out via your consent settings or browser tools (see Google’s <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">opt‑out add‑on</a>).</p>
+
+      <h3>5. Consent & regional requirements</h3>
+      <p>For users in the EEA/UK/CH, we honor your choices under Google’s EU User Consent Policy. Where required by law, we obtain consent for cookies and for the processing of personal data for ads personalization. You can change or withdraw consent anytime via the consent banner (when implemented) or your browser settings.</p>
+
+      <h3>6. Children’s privacy</h3>
+      <p>This service is not directed to children under 13 (or relevant age as defined by local law). We do not knowingly collect personal data from children.</p>
+
+      <h3>7. Data security</h3>
+      <p>Because image processing occurs locally, sensitive content remains on your device. We recommend using up‑to‑date browsers and avoiding shared/public devices for private images.</p>
+
+      <h3>8. Third‑party links</h3>
+      <p>Our site may include links to third‑party websites. We are not responsible for their content or privacy practices. Please review their policies.</p>
+
+      <h3>9. Changes to this policy</h3>
+      <p>We may update this Privacy Policy from time to time to reflect changes in technology, law, or our business. Significant changes will be highlighted on this page.</p>
+
+      <h3>10. Contact</h3>
+      <p>Questions about this policy? Email us at <a href="mailto:dev@easyimagecr.in">dev@easyimagecr.in</a>.</p>
+    </div>
+    
+    <div id="terms-content" class="page-section">
+      <h2>Terms of Use</h2>
+      <p>By using EasyImageCR, you agree to these terms:</p>
+      <ul>
+        <li>You are responsible for the content you process and any rights needed to edit it.</li>
+        <li>Do not use this service for illegal, harmful, or infringing purposes.</li>
+        <li>The tools are provided on an "as‑is" and "as‑available" basis without warranties of any kind.</li>
+        <li>We may change features or policies at any time to maintain quality or legal compliance.</li>
+        <li>Where ads are shown, you must not artificially generate clicks or impressions.</li>
+        <li>If you do not agree, please discontinue use of the service.</li>
+      </ul>
+    </div>
+  
+    <div id="disclaimer-content" class="page-section">
+      <h2>Disclaimer</h2>
+      <p>EasyImageCR is an independent tool. While we aim for accuracy, we cannot guarantee perfect results or compatibility with every file format. Use at your own risk.</p>
+      <p>We are not responsible for loss of data, revenue, or business arising from use of this site.</p>
+      <p>Third‑party links and ads are outside our control; review their policies before using them.</p>
+      <p>Nothing on this site constitutes professional advice.</p>
+    </div>
+    
+  </div>
   <footer>
     <div class="madein">Made with ❤️ in 🇮🇳.</div>
     <div>
@@ -634,242 +754,7 @@
       </div>
   </footer>
 
-  <div id="about-modal" class="modal-overlay">
-    <div class="modal-inner">
-      <h2>About Us</h2>
-      <div class="modal-content">
-        <p>Welcome to EasyImageCR.in! Our mission is to provide a fast, free, and private way for anyone to convert and resize images.</p>
-        <p>We believe powerful tools should be simple. This entire application runs in your web browser, meaning <strong>your files are never uploaded to a server</strong>. Your privacy is 100% protected.</p>
-        <p>This tool was built for students, professionals, artists, and anyone who needs a quick image adjustment without the hassle of opening heavy software. We hope you find it useful!</p>
-      </div>
-      <button class="close-modal">Close</button>
-    </div>
-  </div>
-
-  <div id="contact-modal" class="modal-overlay">
-    <div class="modal-inner">
-      <h2>Contact Us</h2>
-      <div class="modal-content">
-        <p>Have questions, feedback, or a bug to report? We'd love to hear from you!</p>
-        <p>You can reach our development team by email:</p>
-        <p><strong><a href="mailto:dev@easyimagecr.in">dev@easyimagecr.in</a></strong></p>
-        <p>We do our best to respond to all inquiries as quickly as possible.</p>
-      </div>
-      <button class="close-modal">Close</button>
-    </div>
-  </div>
-
-  <div id="privacy-modal" class="modal-overlay">
-    <div class="modal-inner">
-      <h2>Privacy Policy & Cookies</h2>
-      <div class="modal-content">
-        <p>
-          <strong>Easy Image Converter & Resizer</strong> (“this site,” “we,” “our,” or “us”) operates as a free online tool for users worldwide. Your privacy is important to us.
-        </p>
-        <ul>
-          <li><b>Local Processing:</b> All image processing is done within your browser. Your images and contents never leave your device or get uploaded to our servers.</li>
-          <li><b>Ads & Analytics:</b> This site may show advertisements (such as Google AdSense) and/or use web analytics to track site usage (e.g., Google Analytics). <b>These third-party services may use cookies, browser storage, or similar methods to collect anonymous usage statistics, deliver targeted ads, or track ad clicks.</b></li>
-          <li><b>Cookies:</b> We use cookies to ensure basic website functionality. Our third-party partners (like Google AdSense and Google Analytics) also use cookies to serve personalized ads and analyze traffic. By using this site, you consent to the use of such cookies. You can manage cookie preferences in your browser settings.</li>
-          <li><b>Affiliate Links:</b> We may include affiliate links. If you click them, we may earn commissions at no cost to you. This does not affect your use of the tool.</li>
-          <li><b>No Personal Data Required:</b> We do not require you to create an account or provide personal information to use our tools.</li>
-          <li><b>Contact:</b> For privacy concerns or requests, please contact us at <a href="mailto:dev@easyimagecr.in">dev@easyimagecr.in</a>.</li>
-        </ul>
-        <p>
-          By using this service, you consent to the terms above. For further details, consult the privacy policies of any third-party ad or analytics providers in use.
-        </p>
-      </div>
-      <button id="close-privacy" class="close-modal">Close</button>
-    </div>
-  </div>
-
   <script>
-    const LT = {
-      en: {
-        title: "Easy Image Converter & Resizer",
-        drop: "Drag & drop your image or click to select",
-        width: "Width (px)",
-        height: "Height (px)",
-        ratio: "Maintain Ratio",
-        dimNote: "With ratio: edit one box, other auto-calculates.<br>Without: set both freely or leave blank to keep original.",
-        rotate: "🔄 Rotate 90°",
-        flipH: "⟷ Flip H",
-        flipV: "⇵ Flip V",
-        reset: "🗑 Clear All",
-        quality: "Quality",
-        download: "Resize & Download",
-        privacy: "All processing is local—no image leaves your browser."
-      },
-      nl: {
-        title: "Easy Image Converter & Resizer",
-        drop: "Sleep je afbeelding hierheen of klik om te selecteren",
-        width: "Breedte (px)",
-        height: "Hoogte (px)",
-        ratio: "Verhouding behouden",
-        dimNote: "Met verhouding: één vak wijzigen, ander wordt berekend.<br>Zonder: beide vrij invullen of leeg laten voor origineel.",
-        rotate: "🔄 90° draaien",
-        flipH: "⟷ Horizontaal spiegelen",
-        flipV: "⇵ Verticaal spiegelen",
-        reset: "🗑 Alles wissen",
-        quality: "Kwaliteit",
-        download: "Converteren & Downloaden",
-        privacy: "Alle verwerking is lokaal – je afbeelding verlaat je browser niet."
-      },
-      es: {
-        title: "Easy Image Converter & Resizer",
-        drop: "Arrastra tu imagen aquí o haz clic para seleccionar",
-        width: "Ancho (px)",
-        height: "Alto (px)",
-        ratio: "Mantener Proporción",
-        dimNote: "Con proporción: edita uno, el otro se calcula.<br>Sin proporción: pon ambos campos o déjalos vacíos para original.",
-        rotate: "🔄 Rotar 90°",
-        flipH: "⟷ Voltear H",
-        flipV: "⇵ Voltear V",
-        reset: "🗑 Limpiar Todo",
-        quality: "Calidad",
-        download: "Redimensionar & Descargar",
-        privacy: "El procesamiento es local: tu imagen no sale del navegador."
-      },
-      fr: {
-        title: "Easy Image Converter & Resizer",
-        drop: "Glissez-déposez ou cliquez pour choisir une image",
-        width: "Largeur (px)",
-        height: "Hauteur (px)",
-        ratio: "Conserver le ratio",
-        dimNote: "Avec ratio : éditer une case, l'autre se calcule.<br>Sans : remplissez les deux ou laissez vide pour original.",
-        rotate: "🔄 Tourner de 90°",
-        flipH: "⟷ Miroir H",
-        flipV: "⇵ Miroir V",
-        reset: "🗑 Tout Effacer",
-        quality: "Qualité",
-        download: "Redimensionner & Télécharger",
-        privacy: "Tout traitement est local : l’image ne quitte pas votre navigateur."
-      },
-      pt: {
-        title: "Easy Image Converter & Resizer",
-        drop: "Arraste sua imagem ou clique para selecionar",
-        width: "Largura (px)",
-        height: "Altura (px)",
-        ratio: "Manter Proporção",
-        dimNote: "Com proporção: edite um campo, outro calcula.<br>Sem proporção: preencha ambos ou deixe vazio para original.",
-        rotate: "🔄 Girar 90°",
-        flipH: "⟷ Virar Horizontal",
-        flipV: "⇵ Virar Vertical",
-        reset: "🗑 Limpar Tudo",
-        quality: "Qualidade",
-        download: "Redimensionar & Baixar",
-        privacy: "Todo processamento é local – sua imagem não sai do navegador."
-      },
-      it: {
-        title: "Easy Image Converter & Resizer",
-        drop: "Trascina qui l’immagine o clicca per selezionare",
-        width: "Larghezza (px)",
-        height: "Altezza (px)",
-        ratio: "Mantieni Proporzioni",
-        dimNote: "Con rapporto: modifica uno, l’altro si aggiorna.<br>Senza: inserisci entrambi o lascia vuoto per originale.",
-        rotate: "🔄 Ruota di 90°",
-        flipH: "⟷ Specchio Orizzontale",
-        flipV: "⇵ Specchio Verticale",
-        reset: "🗑 Cancella Tutto",
-        quality: "Qualità",
-        download: "Ridimensiona & Scarica",
-        privacy: "Tutto il processamento è locale: l'immagine non lascia il browser."
-      },
-      ko: {
-        title: "Easy Image Converter & Resizer",
-        drop: "이미지를 드래그하거나 클릭해서 선택하세요",
-        width: "너비 (px)",
-        height: "높이 (px)",
-        ratio: "비율 유지",
-        dimNote: "비율 유지: 한 칸 변경 시 다른 칸 자동 계산<br>비율 해제: 모두 자유 입력 또는 비워두기 (원본)",
-        rotate: "🔄 90° 회전",
-        flipH: "⟷ 좌우 뒤집기",
-        flipV: "⇵ 상하 뒤집기",
-        reset: "🗑 전체 초기화",
-        quality: "품질",
-        download: "변환 및 다운로드",
-        privacy: "모든 처리는 로컬 – 이미지가 브라우저를 벗어나지 않습니다."
-      },
-      ja: {
-        title: "Easy Image Converter & Resizer",
-        drop: "画像をドラッグ＆ドロップまたはクリックして選択",
-        width: "幅 (px)",
-        height: "高さ (px)",
-        ratio: "比率を維持",
-        dimNote: "比率あり：一方を入力すると他方も自動計算<br>比率なし：両方入力、または空白で元サイズ",
-        rotate: "🔄 90°回転",
-        flipH: "⟷ 左右反転",
-        flipV: "⇵ 上下反転",
-        reset: "🗑 すべてクリア",
-        quality: "品質",
-        download: "変換＆ダウンロード",
-        privacy: "すべての処理はローカル。画像はブラウザ外に送信されません。"
-      },
-      hi: {
-        title: "Easy Image Converter & Resizer",
-        drop: " अपनी छवि यहाँ ड्रैग/ड्रॉप करें या चयन के लिए क्लिक करें",
-        width: "चौड़ाई (px)",
-        height: "ऊँचाई (px)",
-        ratio: "आनुपात बनाए रखें",
-        dimNote: "आनुपात के साथ: एक बॉक्स बदलें, अन्य स्वचालित.<br>बिना अनुपात: दोनों सेट करें या खाली छोड़ें.",
-        rotate: "🔄 90° घुमाएँ",
-        flipH: "⟷ क्षैतिज उलटें",
-        flipV: "⇵ लंबवत उलटें",
-        reset: "🗑 सब हटाएँ",
-        quality: "गुणवत्ता",
-        download: "डाउनलोड करें",
-        privacy: "सारा प्रोसेस आपके ब्राउज़र में होता है — आपकी छवि बाहर नहीं जाती।"
-      },
-      ur: {
-        title: "Easy Image Converter & Resizer",
-        drop: "اپنی تصویر یہاں ڈریگ کریں یا انتخاب کے لیے کلک کریں",
-        width: "چوڑائی (px)",
-        height: "اون차ئی (px)",
-        ratio: "تناسب برقرار रखें",
-        dimNote: "تناسب کے ساتھ: ایک باکس بدلیں، دوسرا خود بخود.<br>بدون: دونوں سیٹ کریں یا اصل کیلئے خالی چھوڑ دیں.",
-        rotate: "🔄 90° گھمائیں",
-        flipH: "⟷ اُفقی پلٹیں",
-        flipV: "⇵ عمودی پلٹیں",
-        reset: "🗑 سب صاف کریں",
-        quality: "کوالٹی",
-        download: "ریسائز اور ڈاؤن لوڈ",
-        privacy: "تمام پراSESSنگ مقامی طور پر — آپ کی تصویر براؤزر سے باہر نہیں جاتی۔"
-      },
-      bn: {
-        title: "Easy Image Converter & Resizer",
-        drop: "আপনার ছবি টানুন বা ক্লিক করে দিন",
-        width: "প্রস্থ (px)",
-        height: "উচ্চতা (px)",
-        ratio: "অনুপাত ঠিক রাখুন",
-        dimNote: "অনুপাতসহ: একটি বাক্স বদলান, অন্যটি অটো হবে।<br>বিনা: দুটোই লিখুন বা খালি রাখুন",
-        rotate: "🔄 ৯০° ঘোরান",
-        flipH: "⟷ আনুভূমিক ফ্লিপ",
-        flipV: "⇵ উল্লম্ব ফ্লিপ",
-        reset: "🗑 সব মুছুন",
-        quality: "কোয়ালিটি",
-        download: "ডাউনলোড করুন",
-        privacy: "সব প্রসেসিং লোকাল – আপনার ছবি ব্রাউজার ছাড়ে না।"
-      }
-    };
-    function setLangText(lang) {
-      document.getElementById('title').textContent = LT[lang].title;
-      document.title = LT[lang].title;
-      document.getElementById('drop-text').textContent = LT[lang].drop;
-      document.querySelector('.lbl-width').textContent = LT[lang].width;
-      document.querySelector('.lbl-height').textContent = LT[lang].height;
-      document.querySelector('.lbl-ratio').textContent = LT[lang].ratio;
-      document.getElementById('dim-note').innerHTML = LT[lang].dimNote;
-      document.getElementById('rotate-btn').textContent = LT[lang].rotate;
-      document.getElementById('flip-h-btn').textContent = LT[lang].flipH;
-      document.getElementById('flip-v-btn').textContent = LT[lang].flipV;
-      document.getElementById('reset-btn').textContent = LT[lang].reset;
-      document.querySelector('.lbl-quality').innerHTML = LT[lang].quality + ' <span id="quality-value">' + document.getElementById('quality-value').textContent + '</span>%';
-      document.getElementById('img-convert').textContent = LT[lang].download;
-      document.getElementById('privacy-note').textContent = LT[lang].privacy;
-    }
-    document.getElementById('lang-select').addEventListener('change', function(e) {
-      setLangText(e.target.value);
-      updateThemeButton();
-    });
     // --- Dark Mode fix ---
     const themeToggle = document.getElementById('theme-toggle');
     function updateThemeButton() {
@@ -891,7 +776,6 @@
       alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Cmd+D' : 'Ctrl+D') + ' to bookmark this page!');
     };
 
-    setLangText(document.getElementById('lang-select').value);
     // --- Drag & Drop Logic ---
     const dropArea = document.getElementById('drop-area');
     const imgUpload = document.getElementById('img-upload');
@@ -910,7 +794,7 @@
       dropArea.addEventListener(eventName, e => {
         e.preventDefault(); e.stopPropagation();
         dropArea.classList.remove('dragover');
-        setLangText(document.getElementById('lang-select').value);
+        dropText.textContent = "Drag & drop your image or click to select";
       });
     });
     dropArea.addEventListener('drop', e => {
@@ -925,14 +809,18 @@
         handleImage(imgUpload.files[0]);
       }
     });
+    
+    // MODIFIED: showImageInfo now accepts a string for outSize
     function showImageInfo(name, format, w, h, size, outputW, outputH, outSize) {
       imageInfoDisplay.innerHTML = `
         <strong>${name}</strong><br>
         <span>Format: ${format} &nbsp; Size: ${size} KB</span><br>
         <span>Original: ${w} × ${h} px</span><br>
-        <span>Output: ${outputW} × ${outputH} px${outSize ? ` &nbsp;${outSize} KB` : ''}</span>`;
+        <span>Output: ${outputW} × ${outputH} px${outSize ? ` &nbsp;~${outSize}` : ''}</span>`;
       imageInfoDisplay.style.display = 'block';
     }
+    
+    // --- Main App Logic ---
     const imgWidthInput = document.getElementById('img-width');
     const imgHeightInput = document.getElementById('img-height');
     const maintainRatio = document.getElementById('maintain-ratio');
@@ -947,21 +835,143 @@
     const flipHBtn = document.getElementById('flip-h-btn');
     const flipVBtn = document.getElementById('flip-v-btn');
     const resetBtn = document.getElementById('reset-btn');
+    
+    // NEW: Get Compression Mode elements
+    const compressionModeSelect = document.getElementById('compression-mode');
+    const qualityModeUI = document.getElementById('quality-mode-ui');
+    const targetSizeModeUI = document.getElementById('target-size-mode-ui');
+    const targetSizeInput = document.getElementById('target-size');
+    const targetSizeNote = document.getElementById('target-size-note');
+
     let currentImage = null, originalWidth = 0, originalHeight = 0;
     let imgRotation = 0, imgFlippedH = false, imgFlippedV = false;
     let isUpdating = false;
+    
+    // --- Helper Functions ---
+    
+    // NEW: Checks if a format supports quality-based compression
+    function isLossyFormat(format) {
+      return format.includes('jpeg') || format.includes('webp');
+    }
+    
+    // NEW: Updates the UI based on format and mode selection
+    function updateCompressionUI() {
+      const selectedFormat = imgFormatSelect.value;
+      const selectedMode = compressionModeSelect.value;
+      const targetSizeOption = compressionModeSelect.querySelector('option[value="target-size"]');
+
+      if (isLossyFormat(selectedFormat)) {
+        // Enable "Target Size" option
+        targetSizeOption.disabled = false;
+        targetSizeNote.style.display = 'block';
+        
+        if (selectedMode === 'quality') {
+          qualityModeUI.style.display = 'block';
+          targetSizeModeUI.style.display = 'none';
+        } else { // "target-size"
+          qualityModeUI.style.display = 'none';
+          targetSizeModeUI.style.display = 'block';
+        }
+      } else {
+        // Not a lossy format (PNG, BMP, etc.)
+        // Force "Quality" mode and disable "Target Size"
+        targetSizeOption.disabled = true;
+        targetSizeNote.style.display = 'none';
+        compressionModeSelect.value = 'quality';
+        
+        qualityModeUI.style.display = 'block';
+        targetSizeModeUI.style.display = 'none';
+      }
+      updateOutputEstimate();
+    }
+    
+    // NEW: Binary search to find the quality for a target file size
+    function findDataURLToTargetSize(canvas, format, targetBytes) {
+      let minQ = 0.0, maxQ = 1.0;
+      let bestDataURL = '';
+      let bestError = Infinity;
+
+      // Get header length to calculate byte size more accurately
+      const head = 'data:' + format + ';base64,';
+      
+      // Get DataURL at min quality (0.0)
+      let minDataURL = canvas.toDataURL(format, 0.0);
+      let minBytes = Math.round((minDataURL.length - head.length) * 0.75);
+      
+      // If min quality is already too big, nothing we can do.
+      if (minBytes > targetBytes) {
+        return minDataURL;
+      }
+      
+      // Get DataURL at max quality (1.0)
+      let maxDataURL = canvas.toDataURL(format, 1.0);
+      let maxBytes = Math.round((maxDataURL.length - head.length) * 0.75);
+      
+      // If max quality is already smaller than target, just return max quality
+      if (maxBytes <= targetBytes) {
+        return maxDataURL;
+      }
+
+      // Perform binary search (8 iterations is usually enough)
+      bestDataURL = maxDataURL; // Start with max as a fallback
+      bestError = Math.abs(maxBytes - targetBytes);
+
+      for (let i = 0; i < 8; i++) {
+        let q = (minQ + maxQ) / 2;
+        let dataURL = canvas.toDataURL(format, q);
+        let currentBytes = Math.round((dataURL.length - head.length) * 0.75);
+        
+        let error = currentBytes - targetBytes;
+        
+        // If this is the closest we've found, save it
+        if (Math.abs(error) < bestError) {
+          bestError = Math.abs(error);
+          bestDataURL = dataURL;
+        }
+        
+        if (error > 0) { // Too big, lower the max quality
+          maxQ = q;
+        } else { // Too small, raise the min quality
+          minQ = q;
+        }
+      }
+      
+      return bestDataURL;
+    }
+
+    // --- Event Listeners ---
     imgQualityInput.addEventListener('input', () => {
       qualityValue.textContent = imgQualityInput.value;
-      setLangText(document.getElementById('lang-select').value);
       updateOutputEstimate();
     });
-    [imgWidthInput, imgHeightInput, imgFormatSelect, maintainRatio].forEach(el => {
+    
+    // MODIFIED: Add new listeners
+    [imgWidthInput, imgHeightInput, maintainRatio].forEach(el => {
       el.addEventListener('input', updateOutputEstimate);
       el.addEventListener('change', updateOutputEstimate);
     });
-    rotateBtn.addEventListener('click', updateOutputEstimate);
-    flipHBtn.addEventListener('click', updateOutputEstimate);
-    flipVBtn.addEventListener('click', updateOutputEstimate);
+    
+    imgFormatSelect.addEventListener('change', updateCompressionUI);
+    compressionModeSelect.addEventListener('change', updateCompressionUI);
+    targetSizeInput.addEventListener('input', updateOutputEstimate);
+
+    rotateBtn.addEventListener('click', () => {
+      imgRotation = (imgRotation + 90) % 360; 
+      drawPreview(); 
+      updateOutputEstimate();
+    });
+    flipHBtn.addEventListener('click', () => {
+      imgFlippedH = !imgFlippedH; 
+      drawPreview(); 
+      updateOutputEstimate();
+    });
+    flipVBtn.addEventListener('click', () => {
+      imgFlippedV = !imgFlippedV; 
+      drawPreview(); 
+      updateOutputEstimate();
+    });
+    
+    // --- Core Functions ---
     function handleImage(file) {
       currentFile = file;
       const url = URL.createObjectURL(file);
@@ -982,13 +992,14 @@
           imgCanvas.width = originalWidth;
           imgCanvas.height = originalHeight;
           imgRotation = 0; imgFlippedH = false; imgFlippedV = false;
-          showImageInfo(file.name, format, originalWidth, originalHeight, sizeKB, originalWidth, originalHeight, sizeKB);
+          showImageInfo(file.name, format, originalWidth, originalHeight, sizeKB, originalWidth, originalHeight, `${sizeKB} KB`);
           updateOutputEstimate();
         };
         currentImage.src = e.target.result;
       };
       reader.readAsDataURL(file);
     }
+    
     imgWidthInput.addEventListener('input', () => {
       if (maintainRatio.checked && originalWidth && originalHeight && !isUpdating) {
         if (imgWidthInput.value) {
@@ -1009,10 +1020,7 @@
         }
       } else updateOutputEstimate();
     });
-    maintainRatio.addEventListener('change', updateOutputEstimate);
-    rotateBtn.onclick = function () { imgRotation = (imgRotation + 90) % 360; drawPreview(); updateOutputEstimate();}
-    flipHBtn.onclick = function () { imgFlippedH = !imgFlippedH; drawPreview(); updateOutputEstimate();}
-    flipVBtn.onclick = function () { imgFlippedV = !imgFlippedV; drawPreview(); updateOutputEstimate();}
+    
     function drawPreview() {
       if (!currentImage) return;
       const maxShowW = 400, maxShowH = 220;
@@ -1033,6 +1041,8 @@
       imgPreview.style.display = 'block';
       imgPreview.src = c.toDataURL("image/png");
     }
+    
+    // MODIFIED: To handle new compression modes
     function updateOutputEstimate() {
       if (!currentImage || !currentFile) return;
       let w = originalWidth, h = originalHeight;
@@ -1044,26 +1054,43 @@
       }
       let finalW = newW, finalH = newH;
       if (imgRotation % 180 !== 0) { let t = finalW; finalW = finalH; finalH = t; }
-      let offCanvas = document.createElement('canvas');
-      offCanvas.width = finalW; offCanvas.height = finalH;
-      let offCtx = offCanvas.getContext('2d');
-      offCtx.save();
-      offCtx.translate(finalW / 2, finalH / 2);
-      offCtx.rotate(imgRotation * Math.PI / 180);
-      offCtx.scale(imgFlippedH ? -1 : 1, imgFlippedV ? -1 : 1);
-      offCtx.drawImage(currentImage, -newW / 2, -newH / 2, newW, newH);
-      offCtx.restore();
-      let selectedFormat = imgFormatSelect.value;
-      let q = 0.9;
-      if (selectedFormat.includes("jpeg") || selectedFormat.includes("webp")) {
-        q = parseInt(imgQualityInput.value, 10) / 100;
+      
+      const selectedFormat = imgFormatSelect.value;
+      const selectedMode = compressionModeSelect.value;
+      let outputSizeStr = '';
+
+      if (selectedMode === 'quality' || !isLossyFormat(selectedFormat)) {
+        // Quality Mode OR Lossless format: Estimate size
+        let offCanvas = document.createElement('canvas');
+        offCanvas.width = finalW; offCanvas.height = finalH;
+        let offCtx = offCanvas.getContext('2d');
+        offCtx.save();
+        offCtx.translate(finalW / 2, finalH / 2);
+        offCtx.rotate(imgRotation * Math.PI / 180);
+        offCtx.scale(imgFlippedH ? -1 : 1, imgFlippedV ? -1 : 1);
+        offCtx.drawImage(currentImage, -newW / 2, -newH / 2, newW, newH);
+        offCtx.restore();
+        
+        let q = 0.9;
+        if (isLossyFormat(selectedFormat)) {
+          q = parseInt(imgQualityInput.value, 10) / 100;
+        }
+        let dataURL = offCanvas.toDataURL(selectedFormat, q);
+        let head = 'data:' + selectedFormat + ';base64,';
+        let estimatedKB = Math.round(((dataURL.length - head.length) * 0.75) / 1024);
+        outputSizeStr = `${estimatedKB} KB`;
+        
+      } else {
+        // Target Size Mode: Just show the target
+        let targetKB = parseInt(targetSizeInput.C.value, 10) || 0;
+        outputSizeStr = `${targetKB} KB (Target)`;
       }
-      let dataURL = offCanvas.toDataURL(selectedFormat, q);
-      let estimatedKB = Math.round((dataURL.length - ('data:image/png;base64,'.length)) * 0.75 / 1024);
+
       let format = selectedFormat.replace('image/', '').toUpperCase();
       let inputKB = Math.round(currentFile.size / 1024);
-      showImageInfo(currentFile.name, format, w, h, inputKB, finalW, finalH, estimatedKB);
+      showImageInfo(currentFile.name, format, w, h, inputKB, finalW, finalH, outputSizeStr);
     }
+    
     imgConvertBtn.onclick = function () {
       if (!currentImage || !currentFile) {
         alert('Please upload an image first.');
@@ -1071,6 +1098,8 @@
       }
       convertImage(currentFile);
     };
+    
+    // MODIFIED: To handle new compression modes for download
     function convertImage(file) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -1086,6 +1115,7 @@
           }
           let finalW = newW, finalH = newH;
           if (imgRotation % 180 !== 0) { let t = finalW; finalW = finalH; finalH = t; }
+          
           imgCanvas.width = finalW;
           imgCanvas.height = finalH;
           imgCtx.save();
@@ -1094,12 +1124,24 @@
           imgCtx.scale(imgFlippedH ? -1 : 1, imgFlippedV ? -1 : 1);
           imgCtx.drawImage(img, -newW / 2, -newH / 2, newW, newH);
           imgCtx.restore();
+          
           const selectedFormat = imgFormatSelect.value;
-          let q = 0.9;
-          if (selectedFormat.includes("jpeg") || selectedFormat.includes("webp")) {
-            q = parseInt(imgQualityInput.value, 10) / 100;
+          const selectedMode = compressionModeSelect.value;
+          let dataURL = '';
+
+          if (selectedMode === 'quality' || !isLossyFormat(selectedFormat)) {
+            // Quality Mode OR Lossless format
+            let q = 1.0; // Default for PNG/BMP
+            if (isLossyFormat(selectedFormat)) {
+              q = parseInt(imgQualityInput.value, 10) / 100;
+            }
+            dataURL = imgCanvas.toDataURL(selectedFormat, q);
+          } else {
+            // Target Size Mode
+            let targetBytes = (parseInt(targetSizeInput.value, 10) || 100) * 1024;
+            dataURL = findDataURLToTargetSize(imgCanvas, selectedFormat, targetBytes);
           }
-          const dataURL = imgCanvas.toDataURL(selectedFormat, q);
+          
           const ext = selectedFormat.split('/')[1];
           const link = document.createElement('a');
           link.href = dataURL;
@@ -1107,7 +1149,7 @@
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-          updateOutputEstimate();
+          updateOutputEstimate(); // Re-run estimate to show final size
         };
         img.src = e.target.result;
       };
@@ -1126,43 +1168,41 @@
       imgUpload.value = "";
     };
 
-    // --- NEW: Generic Modal Logic ---
-    function openModal(modalId) {
-      const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-      }
-    }
+    // --- In-Page View Logic ---
+    const toolView = document.querySelector('.container');
+    const pageView = document.getElementById('page-content-container');
+    const allPageSections = document.querySelectorAll('.page-section');
+    const backBtn = document.getElementById('back-to-tool-btn');
+    const footer = document.querySelector('footer'); 
 
-    function closeModal(modalElement) {
-      modalElement.style.display = 'none';
-      document.body.style.overflow = '';
-    }
-
-    // Open Triggers
-    document.getElementById('show-about').onclick = function(e) { e.preventDefault(); openModal('about-modal'); };
-    document.getElementById('show-contact').onclick = function(e) { e.preventDefault(); openModal('contact-modal'); };
-    document.getElementById('show-privacy').onclick = function(e) { e.preventDefault(); openModal('privacy-modal'); };
-
-    // Close Triggers (from button)
-    document.querySelectorAll('.close-modal').forEach(btn => {
-      btn.onclick = function() {
-        const modal = btn.closest('.modal-overlay');
-        closeModal(modal);
-      };
-    });
-
-    // Close on overlay click
-    document.querySelectorAll('.modal-overlay').forEach(modal => {
-      modal.addEventListener('click', function(e) {
-        if (e.target === this) {
-          closeModal(this);
-        }
+    function showPage(pageId) {
+      toolView.style.display = 'none';
+      allPageSections.forEach(section => {
+        section.style.display = 'none';
       });
-    });
-    // --- End New Modal Logic ---
+      document.getElementById(pageId).style.display = 'block';
+      pageView.style.display = 'block';
+      footer.style.display = 'none';
+      window.scrollTo(0, 0);
+    }
 
+    function showToolView() {
+      pageView.style.display = 'none';
+      toolView.style.display = 'block';
+      footer.style.display = 'block';
+    }
+
+    document.getElementById('show-about').onclick = function(e) { e.preventDefault(); showPage('about-content'); };
+    document.getElementById('show-faq').onclick = function(e) { e.preventDefault(); showPage('faq-content'); };
+    document.getElementById('show-contact').onclick = function(e) { e.preventDefault(); showPage('contact-content'); };
+    document.getElementById('show-privacy').onclick = function(e) { e.preventDefault(); showPage('privacy-content'); };
+    document.getElementById('show-terms').onclick = function(e) { e.preventDefault(); showPage('terms-content'); };
+    document.getElementById('show-disclaimer').onclick = function(e) { e.preventDefault(); showPage('disclaimer-content'); };
+    backBtn.onclick = showToolView;
+    
+    // --- Initial Run ---
+    updateCompressionUI(); // Run on load to set the correct UI
+    
   </script>
 </body>
 </html>
