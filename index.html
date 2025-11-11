@@ -1,1208 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="https://app.termly.io/resource-blocker/f90f891f-a106-4d10-a1e6-e94bde1f2264?autoBlock=on"></script>
-<a href="#" class="termly-display-preferences">Consent Preferences</a>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5329120501378061"
-     crossorigin="anonymous"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-THV9B0DZ49"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-THV9B0DZ49');
-</script>
   <meta charset="UTF-8">
   <title>Easy Image Converter & Resizer | Free & Private (EasyImageCR.in)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* --- Basic Reset --- */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Roboto', Arial, sans-serif;
-      background: #f9faff;
-      margin: 0;
-      min-height: 100vh;
-      transition: background 0.2s, color 0.2s;
-    }
-    body.dark {
-      background: #161b22;
-      color: #e3e3e3;
-    }
-    /* --- Container (Desktop/Mobile) --- */
-    .container {
-      max-width: 800px; 
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 6px 20px rgba(50, 50, 93, 0.1), 0 3px 7px rgba(0, 0, 0, 0.07);
-      padding: 26px 30px 20px 30px; 
-      text-align: center;
-      transition: background 0.2s, color 0.2s, max-width 0.3s, box-shadow 0.2s;
-    }
-    body.dark .container {
-      background: #23272e;
-      color: #eee;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), 0 3px 7px rgba(0, 0, 0, 0.15);
-    }
-    .lang-row {
-      display: flex;
-      justify-content: flex-end; 
-      align-items: center;
-      gap: 12px;
-    }
-    .header-buttons-right {
-      display: flex;
-      gap: 12px;
-    }
-
-    /* --- Header Navigation --- */
-    .header-nav {
-      text-align: center;
-      margin: 10px 0 15px 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px; 
-    }
-    .header-nav a {
-      text-decoration: none;
-      color: #2a72e7;
-      font-weight: 500;
-      font-size: 14px; 
-      cursor: pointer;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: background-color 0.2s;
-    }
-    body.dark .header-nav a {
-      color: #73d6ff;
-    }
-    .header-nav a:hover {
-      text-decoration: none;
-      background-color: #f0f6ff;
-    }
-    body.dark .header-nav a:hover {
-      background-color: #2a3038;
-    }
-    /* --- End New Style --- */
-    h1 {
-      font-size: 2em;
-      margin-bottom: 12px;
-      color: #2a72e7;
-    }
-    body.dark h1 {
-      color: #73d6ff;
-    }
-    /* --- Domain Tagline --- */
-    .domain-tagline {
-      font-size: 1.1em;
-      font-weight: 500;
-      color: #1a5ac4;
-      margin: -8px 0 16px 0;
-      text-align: center;
-    }
-    body.dark .domain-tagline {
-      color: #88c8ff;
-    }
-    /* --- End New Style --- */
-    .input-group {
-      margin-bottom: 16px;
-    }
-    .drop-area {
-      border: 2px dashed #2a72e7;
-      border-radius: 10px;
-      padding: 28px 10px;
-      margin-bottom: 10px;
-      background: #f3faff;
-      color: #2a72e7;
-      font-size: 1.08em;
-      cursor: pointer;
-      position: relative;
-      transition: border-color 0.2s;
-    }
-    body.dark .drop-area {
-      border-color: #44dde2;
-      background: #1b232b;
-      color: #67ddfa;
-    }
-    .drop-area.dragover {
-      border-color: #00b2ae;
-      background: #e6fcfa;
-    }
-    body.dark .drop-area.dragover {
-      border-color: #36ffc4;
-      background: #20272f;
-    }
-    .drop-area input[type="file"] {
-      display: none;
-    }
-    .image-info {
-      font-size: 13px;
-      color: #417bc2;
-      margin-bottom: 10px;
-      background: #f6f8fc;
-      border-radius: 8px;
-      padding: 5px 12px;
-      display: none;
-    }
-    body.dark .image-info {
-      background: #243040;
-      color: #5eb2ff;
-    }
-    #preview-wrapper {
-      position: relative;
-      max-width: 100%;
-      width: 100%;
-      min-height: 60px;
-      margin: 14px auto 8px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #img-preview {
-      max-width: 100%;
-      max-height: 220px;
-      border-radius: 9px;
-      box-shadow: 0 2px 8px #ececec;
-      background: #fafbff;
-      margin: auto;
-      display: none;
-    }
-    body.dark #img-preview {
-      box-shadow: 0 2px 8px #222e3f;
-      border: 2px solid #243040;
-      background: #23272e;
-    }
-    .resize-group {
-      display: flex;
-      flex-direction: column; /* Mobile-first: stack items */
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 13px;
-    }
-    .resize-fields {
-      display: flex;
-      gap: 28px;
-      justify-content: center;
-      width: 100%;
-      max-width: 340px;
-      margin-bottom: 0;
-    }
-    .resize-fields > div {
-      flex: none;
-      width: 110px;
-    }
-    .ratio-box {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      white-space: nowrap;
-      font-size: 14px;
-      padding: 7px 18px 8px 16px;
-      background: #eef6fe;
-      border-radius: 7px;
-      box-shadow: 0 1px 5px #ccefff11;
-      margin-top: 0px;
-      margin-bottom: 0px;
-    }
-    body.dark .ratio-box {
-      background: #23272e;
-      color: #c0ecff;
-      box-shadow: 0 1px 5px #01223344;
-    }
-    input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      margin-right: 2px;
-    }
-    select, button, input[type="number"] {
-      padding: 10px;
-      width: 100%;
-      margin-top: 6px;
-      margin-bottom: 8px;
-      font-size: 16px;
-      border-radius: 7px;
-      border: 1px solid #cce2ff;
-    }
-    input[type="range"] {
-      width: 100%;
-      margin-top: 6px;
-      margin-bottom: 6px;
-    }
-    button {
-      background: #2a72e7;
-      color: #fff;
-      border: none;
-      font-weight: bold;
-      margin-top: 5px;
-      transition: background .3s;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0099ff;
-    }
-    body.dark button {
-      background: #339fc4;
-    }
-    .small-btn {
-      padding: 7px 15px;
-      font-size: 14px;
-      border-radius: 6px;
-      margin: 2px 4px 2px 0;
-      width: auto;
-    }
-    #bookmark-btn {
-      background: #ffc107;
-      color: #333;
-      font-weight: bold;
-    }
-    body.dark #bookmark-btn {
-      background: #f0b90b;
-      color: #111;
-    }
-    #bookmark-btn:hover {
-      background: #ffd54f;
-    }
-    .formats-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
-      justify-content: center;
-    }
-    .format-card {
-      background: #e9f6ff;
-      color: #2762ef;
-      border: 1px dashed #bae1ff;
-      border-radius: 11px;
-      padding: 7px 14px;
-      font-size: 15px;
-      min-width: 70px;
-      margin: 2px;
-      text-align: center;
-    }
-    body.dark .format-card {
-      background: #243040;
-      color: #78bbfe;
-      border-color: #6ca7ea;
-    }
-    
-    /* MODIFIED: .how-to-use section */
-    .how-to-use {
-      text-align: left;
-      margin-top: 20px;
-      padding: 10px 15px;
-      background: #f3faff;
-      border-radius: 10px;
-    }
-    .how-to-use h2 {
-      text-align: center;
-      color: #2a72e7;
-      margin-top: 10px;
-      margin-bottom: 16px;
-    }
-    .how-to-use h3 {
-      color: #2a72e7;
-      margin-bottom: 5px;
-      margin-top: 20px;
-    }
-    .how-to-use p, .how-to-use li {
-      font-size: 15px;
-      margin-top: 0;
-      color: #333;
-      line-height: 1.6;
-    }
-    body.dark .how-to-use {
-      background: #243040;
-    }
-    body.dark .how-to-use h2 {
-      color: #73d6ff;
-    }
-    body.dark .how-to-use h3 {
-      color: #88c8ff;
-    }
-    body.dark .how-to-use p, body.dark .how-to-use li {
-      color: #c0ecff;
-    }
-    /* END MODIFIED: .how-to-use */
-    
-    .dimension-note {
-      color: #888;
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-    body.dark .dimension-note {
-      color: #99b2d3;
-    }
-    .note {
-      margin-top: 11px;
-      color: #7299df;
-      font-size: 14px;
-    }
-    body.dark .note {
-      color: #6acbc8;
-    }
-    .theme-toggle {
-      float: right;
-      margin: 0;
-    }
-    label {
-      color: #2a72e7;
-      font-weight: bold;
-      font-size: 15px;
-      display: block;
-      margin-top: 8px;
-      margin-bottom: 3px;
-    }
-    body.dark label {
-      color: #88c8ff;
-    }
-    .madein {
-      font-size: 1.03em;
-      color: #2858c7;
-      font-weight: 600;
-      margin-top: 12px;
-      margin-bottom: 3px;
-      letter-spacing: .01em;
-      text-align: center;
-    }
-    body.dark .madein {
-      color: #73d6ff;
-    }
-    footer {
-      text-align:center;
-      padding:18px 0 10px 0;
-      font-size:14px;
-      color:#6a798b;
-      opacity:0.89;
-      margin-top:2px;
-    }
-    body.dark footer {
-      color: #99b2d3;
-    }
-
-    /* --- In-Page View Styles --- */
-    #page-content-container {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 6px 20px rgba(50, 50, 93, 0.1), 0 3px 7px rgba(0, 0, 0, 0.07);
-      padding: 26px 30px 20px 30px;
-      text-align: left;
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    body.dark #page-content-container {
-      background: #23272e;
-      color: #c0ecff;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), 0 3px 7px rgba(0, 0, 0, 0.15);
-    }
-
-    #page-content-container h2 {
-      color: #2a72e7;
-      text-align: center;
-      margin-top: 0;
-    }
-    
-    #page-content-container h3 {
-      color: #2a72e7;
-      margin-top: 1.5em;
-      margin-bottom: 0.5em;
-    }
-
-    body.dark #page-content-container h2 {
-      color: #73d6ff;
-    }
-    
-    body.dark #page-content-container h3 {
-      color: #88c8ff;
-    }
-    
-    #page-content-container p, #page-content-container li {
-      margin-bottom: 1em;
-    }
-    #page-content-container ul {
-      padding-left: 20px;
-    }
-    
-    #page-content-container a {
-      color: #2a72e7;
-    }
-    
-    body.dark #page-content-container a {
-      color: #73d6ff;
-    }
-
-    #back-to-tool-btn {
-      background: #eef6fe;
-      color: #2a72e7;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    body.dark #back-to-tool-btn {
-      background: #2a3038;
-      color: #73d6ff;
-    }
-
-    .page-section {
-      display: none;
-    }
-    /* --- End In-Page View Styles --- */
-
-    /* --- Compression Mode Styles --- */
-    #target-size-mode-ui {
-      display: none; /* Hidden by default */
-      max-width: 280px;
-      margin: 0 auto;
-    }
-    #target-size-note {
-      font-size: 13px;
-      color: #888;
-      margin-top: -5px;
-    }
-    body.dark #target-size-note {
-      color: #99b2d3;
-    }
-    /* --- End Compression Mode Styles --- */
-
-
-    /* --- Responsive Media Query --- */
-    @media (min-width: 600px) {
-      .resize-group {
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-end; 
-        gap: 24px;
-        margin-bottom: 16px;
-      }
-      .resize-fields {
-        margin-bottom: 0;
-        gap: 16px;
-        max-width: none;
-      }
-      .resize-fields > div {
-        width: 120px; 
-      }
-      .ratio-box {
-        margin-bottom: 8px; 
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-      .how-to-use {
-        padding: 15px 30px; 
-      }
-    }
-    /* --- End Media Query --- */
-
-  </style>
+  <link rel="stylesheet" href="assets/styles.css">
+  <!-- AdSense/Analytics intentionally omitted until approval -->
 </head>
 <body>
-  <div class="container">
-    <div class="lang-row">
-      <div class="header-buttons-right">
-        <button class="small-btn" id="bookmark-btn" title="Bookmark this page">⭐️ Bookmark</button>
-        <button class="theme-toggle small-btn" id="theme-toggle">🌙 Dark Mode</button>
-      </div>
-    </div>
+<header class="site-header">
+  <nav class="header-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="blogs.html">Blogs</a>
+    <a href="faq.html">❓ FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="disclaimer.html">Disclaimer</a>
+    <button class="theme-toggle small-btn" id="theme-toggle">🌙 Dark Mode</button>
+  </nav>
+</header>
 
-    <div class="header-nav">
-      <a id="show-about">About Us</a>
-      <a id="show-faq">❓ FAQ</a>
-      <a id="show-contact">Contact</a>
-      <a id="show-privacy">Privacy Policy</a>
-      <a id="show-terms">Terms of Use</a>
-      <a id="show-disclaimer">Disclaimer</a>
+<div class="container">
+  <div class="lang-row">
+    <div class="header-buttons-right">
+      <button class="small-btn" id="bookmark-btn" title="Bookmark this page">⭐️ Bookmark</button>
     </div>
-
-    <h1 id="title">Easy Image Converter & Resizer</h1>
-    <p class="domain-tagline">easyimagecr.in</p>
-
-    <div class="input-group">
-      <div class="drop-area" id="drop-area">
-        <span id="drop-text">Drag & drop your image or click to select</span>
-        <input type="file" id="img-upload" accept="image/jpeg,image/png,image/webp,image/bmp,image/gif,image/tiff" />
-      </div>
-      <div id="image-info" class="image-info"></div>
-    </div>
-    <div id="preview-wrapper">
-      <img id="img-preview" alt="Image Preview" />
-    </div>
-    <div class="input-group">
-      <div class="resize-group">
-        <div class="resize-fields">
-          <div>
-            <label for="img-width" class="lbl-width">Width (px)</label>
-            <input type="number" id="img-width" min="1" placeholder="auto">
-          </div>
-          <div>
-            <label for="img-height" class="lbl-height">Height (px)</label>
-            <input type="number" id="img-height" min="1" placeholder="auto">
-          </div>
-        </div>
-        <div class="ratio-box">
-          <input type="checkbox" id="maintain-ratio" checked>
-          <label for="maintain-ratio" class="lbl-ratio">Maintain Ratio</label>
-        </div>
-      </div>
-      <div class="dimension-note" id="dim-note">
-        With ratio: edit one box, other auto-calculates.<br>
-        Without: set both freely or leave blank to keep original.
-      </div>
-      <button class="small-btn" id="rotate-btn">🔄 Rotate 90°</button>
-      <button class="small-btn" id="flip-h-btn">⟷ Flip H</button>
-      <button class="small-btn" id="flip-v-btn">⇵ Flip V</button>
-      <button class="small-btn" id="reset-btn">🗑 Clear All</button>
-    </div>
-    
-    <div class="input-group">
-      <label for="img-format">Format</label>
-      <select id="img-format">
-        <option value="image/jpeg">JPEG</option>
-        <option value="image/png">PNG</option>
-        <option value="image/webp">WEBP</option>
-        <option value="image/bmp">BMP</option>
-        <option value="image/gif">GIF</option>
-        <option value="image/tiff">TIFF</option>
-      </select>
-    </div>
-
-    <div class="input-group">
-      <label for="compression-mode">Compression Mode</label>
-      <select id="compression-mode">
-        <option value="quality">Quality</option>
-        <option value="target-size">Target Size (KB)</option>
-      </select>
-    </div>
-
-    <div id="quality-mode-ui" class="input-group">
-      <label for="img-quality" class="lbl-quality">Quality <span id="quality-value">90</span>%</label>
-      <input type="range" id="img-quality" min="10" max="100" value="90">
-    </div>
-
-    <div id="target-size-mode-ui" class="input-group">
-      <label for="target-size">Target Size (KB)</label>
-      <input type="number" id="target-size" min="1" placeholder="e.g., 100">
-      <div id="target-size-note">Only applies to JPEG and WEBP formats.</div>
-    </div>
-    
-    <div class="input-group">
-      <button id="img-convert">Resize & Download</button>
-    </div>
-    
-    <div class="formats-row">
-      <div class="format-card">PNG ⇄ JPG</div>
-      <div class="format-card">JPG ⇄ WEBP</div>
-      <div class="format-card">PNG ⇄ WEBP</div>
-      <div class="format-card">BMP ⇄ JPG</div>
-      <div class="format-card">GIF ⇄ PNG</div>
-      <div class="format-card">TIFF ⇄ JPG</div>
-    </div>
-
-    <div class="how-to-use">
-      <h2>Your Free Online Image Converter & Resizer</h2>
-      <p>
-        Welcome to the easiest way to **resize and convert images** online. Our tool helps you quickly adjust photo dimensions, **compress images**, and **change formats** like JPG, PNG, WEBP, and more. Everything is 100% free, private, and runs in your browser—no uploads required.
-      </p>
-      
-      <h3>1. Upload or Drop Your Image</h3>
-      <p>
-        Start by dragging your file onto the drop zone, or click to browse. We support all common formats, making us a versatile **JPG converter**, **PNG converter**, and **WEBP converter** all in one.
-      </p>
-
-      <h3>2. Resize, Rotate, or Flip</h3>
-      <p>
-        Need to **change image size**? Enter a new width or height in pixels (px). Check "Maintain Ratio" to avoid stretching. You can also **resize JPG**, **resize PNG**, or any other format. Use the buttons to quickly **rotate image** 90° or **flip image** horizontally or vertically.
-      </p>
-
-      <h3>3. Choose Format & Compression</h3>
-      <p>
-        Select your output format from the dropdown (e.g., **convert PNG to JPG**, **WEBP to PNG**, or **JPG to WEBP**). To **compress image** size, use the "Quality" slider. For precise control, switch to "Target Size (KB)" mode to get a specific file size for your JPEG or WEBP files.
-      </p>
-
-      <h3>4. Download Your New Image</h3>
-      <p>
-        Click "Resize & Download." Your new, converted, or resized image will be saved to your computer instantly. Remember, all processing is done locally for complete privacy.
-      </p>
-    </div>
-    <canvas id="img-canvas" style="display:none;"></canvas>
-    <div class="note" id="privacy-note">All processing is local—no image leaves your browser.</div>
   </div>
 
+  <h1 id="title">Easy Image Converter & Resizer</h1>
+  <p class="domain-tagline">easyimagecr.in</p>
 
-  <div id="page-content-container" style="display: none;">
-  
-    <button id="back-to-tool-btn" class="small-btn">⬅️ Back to Tool</button>
-    
-    <div id="about-content" class="page-section">
-      <h2>About Us</h2>
-      <p>Welcome to EasyImageCR.in! Our mission is to provide a fast, free, and private way for anyone to convert and resize images.</p>
-      <p>We believe powerful tools should be simple. This entire application runs directly in your web browser, meaning your files are never uploaded to a server.</p>
-      <p>This tool was built for students, professionals, artists, and anyone who needs a quick image adjustment without the hassle of opening heavy software. We hope you find it useful!</p>
+  <div class="input-group">
+    <div class="drop-area" id="drop-area">
+      <span id="drop-text">Drag & drop your image or click to select</span>
+      <input type="file" id="img-upload" accept="image/jpeg,image/png,image/webp,image/bmp,image/gif,image/tiff" />
     </div>
-    
-    <div id="faq-content" class="page-section">
-      <h2>❓ Frequently Asked Questions</h2>
-      <h3>Is any image uploaded to your server?</h3>
-      <p>No. All editing happens inside your browser using HTML5 Canvas and Web APIs. Your images never leave your device.</p>
-      
-      <h3>Why do I see ads?</h3>
-      <p>Ads (via Google AdSense) help keep EasyImageCR free. Ads may use cookies to measure performance and personalize content where permitted by law and your consent settings.</p>
-      
-      <h3>Do you support bulk processing?</h3>
-      <p>Yes. Use the Bulk Processor tab to resize/convert many images with one set of options. A thumbnail preview appears after file selection.</p>
-      
-      <h3>Can I compress to a specific file size?</h3>
-      <p>Yes. Choose Target size (KB) to automatically adjust quality for JPEG/WebP to meet a target file size.</p>
-      
-      <h3>Which formats are supported?</h3>
-      <p>JPEG, PNG, WebP, GIF, BMP, and TIFF for export. (HEIC/AVIF planned.)</p>
-      
-      <h3>Is this free for commercial use?</h3>
-      <p>Yes. You can edit personal or business images. Please respect intellectual property rights for content you process.</p>
-      
-      <h3>Will you add offline mode?</h3>
-      <p>Yes. A Service Worker is planned so the app can be installed and used offline after the first load.</p>
-      
-      <h3>How do I contact support?</h3>
-      <p>Email us at <a href="mailto:dev@easyimagecr.in">dev@easyimagecr.in</a>. We usually reply within 24–48 hours.</p>
-    </div>
-  
-    <div id="contact-content" class="page-section">
-      <h2>Contact Us</h2>
-      <p>Have questions, feedback, or a bug to report? We'd love to hear from you!</p>
-      <p>You can reach our development team by email:</p>
-      <p><strong><a href="mailto:dev@easyimagecr.in">dev@easyimagecr.in</a></strong></p>
-      <p>We do our best to respond to all inquiries as quickly as possible.</p>
-    </div>
-    
-    <div id="privacy-content" class="page-section">
-      <h2>Privacy Policy</h2>
-      <p><em>Last updated: 11/11/2025</em></p>
-      <p>EasyImageCR ("we", "us", or "our") provides client‑side image utilities at easyimagecr.in. We respect your privacy and are committed to explaining clearly how information is handled on this website.</p>
-      
-      <h3>1. What data we process</h3>
-      <ul>
-        <li><strong>Images you load:</strong> Images you open in EasyImageCR are processed locally in your browser using HTML5 Canvas and related APIs. We do not upload, transmit, or store your images on our servers.</li>
-        <li><strong>Device & usage data (analytics):</strong> If enabled, we may use analytics to understand traffic (pages visited, device type, approximate location derived from IP by the analytics provider). This data is aggregated and not used to identify you personally.</li>
-        <li><strong>Advertising data (AdSense):</strong> We may show ads to support the service. Ad vendors may use cookies or local storage to deliver, measure, and personalize ads where permitted.</li>
-      </ul>
-
-      <h3>2. Cookies & local storage</h3>
-      <p>Our tools may store non‑personal settings (e.g., last used tab or quality value) in your browser’s localStorage so the app remembers your preferences. Third‑party services (analytics/ads) may set cookies for measurement or personalization in line with your consent choices.</p>
-
-      <h3>3. Advertising (Google AdSense)</h3>
-      <p>We partner with Google AdSense to display ads. Google and its partners may use cookies and similar technologies to serve ads based on prior visits to this and/or other websites.</p>
-      <p>Users may opt out of personalized advertising by visiting <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Ads Settings</a>. You can also review <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses information from sites or apps that use its services</a> and the list of <a href="https://support.google.com/admanager/answer/9012903" target="_blank" rel="noopener noreferrer">Google certified ad technology vendors</a>.</p>
-      <p>We adhere to Google’s publisher policies and program policies, including restrictions on prohibited content and invalid traffic.</p>
-
-      <h3>4. Analytics</h3>
-      <p>We may use Google Analytics to measure usage trends (e.g., which pages are most visited). IP anonymization and data retention limits may be enabled where available. Analytics cookies help us improve the site; you can opt out via your consent settings or browser tools (see Google’s <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">opt‑out add‑on</a>).</p>
-
-      <h3>5. Consent & regional requirements</h3>
-      <p>For users in the EEA/UK/CH, we honor your choices under Google’s EU User Consent Policy. Where required by law, we obtain consent for cookies and for the processing of personal data for ads personalization. You can change or withdraw consent anytime via the consent banner (when implemented) or your browser settings.</p>
-
-      <h3>6. Children’s privacy</h3>
-      <p>This service is not directed to children under 13 (or relevant age as defined by local law). We do not knowingly collect personal data from children.</p>
-
-      <h3>7. Data security</h3>
-      <p>Because image processing occurs locally, sensitive content remains on your device. We recommend using up‑to‑date browsers and avoiding shared/public devices for private images.</p>
-
-      <h3>8. Third‑party links</h3>
-      <p>Our site may include links to third‑party websites. We are not responsible for their content or privacy practices. Please review their policies.</p>
-
-      <h3>9. Changes to this policy</h3>
-      <p>We may update this Privacy Policy from time to time to reflect changes in technology, law, or our business. Significant changes will be highlighted on this page.</p>
-
-      <h3>10. Contact</h3>
-      <p>Questions about this policy? Email us at <a href="mailto:dev@easyimagecr.in">dev@easyimagecr.in</a>.</p>
-    </div>
-    
-    <div id="terms-content" class="page-section">
-      <h2>Terms of Use</h2>
-      <p>By using EasyImageCR, you agree to these terms:</p>
-      <ul>
-        <li>You are responsible for the content you process and any rights needed to edit it.</li>
-        <li>Do not use this service for illegal, harmful, or infringing purposes.</li>
-        <li>The tools are provided on an "as‑is" and "as‑available" basis without warranties of any kind.</li>
-        <li>We may change features or policies at any time to maintain quality or legal compliance.</li>
-        <li>Where ads are shown, you must not artificially generate clicks or impressions.</li>
-        <li>If you do not agree, please discontinue use of the service.</li>
-      </ul>
-    </div>
-  
-    <div id="disclaimer-content" class="page-section">
-      <h2>Disclaimer</h2>
-      <p>EasyImageCR is an independent tool. While we aim for accuracy, we cannot guarantee perfect results or compatibility with every file format. Use at your own risk.</p>
-      <p>We are not responsible for loss of data, revenue, or business arising from use of this site.</p>
-      <p>Third‑party links and ads are outside our control; review their policies before using them.</p>
-      <p>Nothing on this site constitutes professional advice.</p>
-    </div>
-    
+    <div id="image-info" class="image-info"></div>
   </div>
-  <footer>
-    <div class="madein">Made with ❤️ in 🇮🇳.</div>
-    <div>
-      &copy; 2025 Easy Image Converter & Resizer (easyimagecr.in). All rights reserved.
+  <div id="preview-wrapper">
+    <img id="img-preview" alt="Image Preview" />
+  </div>
+  <div class="input-group">
+    <div class="resize-group">
+      <div class="resize-fields">
+        <div>
+          <label for="img-width" class="lbl-width">Width (px)</label>
+          <input type="number" id="img-width" min="1" placeholder="auto">
+        </div>
+        <div>
+          <label for="img-height" class="lbl-height">Height (px)</label>
+          <input type="number" id="img-height" min="1" placeholder="auto">
+        </div>
       </div>
-  </footer>
+      <div class="ratio-box">
+        <input type="checkbox" id="maintain-ratio" checked>
+        <label for="maintain-ratio" class="lbl-ratio">Maintain Ratio</label>
+      </div>
+    </div>
+    <div class="dimension-note" id="dim-note">
+      With ratio: edit one box, other auto-calculates.<br>
+      Without: set both freely or leave blank to keep original.
+    </div>
+    <button class="small-btn" id="rotate-btn">🔄 Rotate 90°</button>
+    <button class="small-btn" id="flip-h-btn">⟷ Flip H</button>
+    <button class="small-btn" id="flip-v-btn">⇵ Flip V</button>
+    <button class="small-btn" id="reset-btn">🗑 Clear All</button>
+  </div>
+  
+  <div class="input-group">
+    <label for="img-format">Format</label>
+    <select id="img-format">
+      <option value="image/jpeg">JPEG</option>
+      <option value="image/png">PNG</option>
+      <option value="image/webp">WEBP</option>
+      <option value="image/bmp">BMP</option>
+      <option value="image/gif">GIF</option>
+      <option value="image/tiff">TIFF</option>
+    </select>
+  </div>
 
-  <script>
-    // --- Dark Mode fix ---
-    const themeToggle = document.getElementById('theme-toggle');
-    function updateThemeButton() {
-      if (document.body.classList.contains('dark')) {
-        themeToggle.textContent = "☀️ Light Mode";
-      } else {
-        themeToggle.textContent = "🌙 Dark Mode";
-      }
-    }
-    themeToggle.onclick = function () {
-      document.body.classList.toggle('dark');
-      updateThemeButton();
-    };
-    updateThemeButton();
+  <div class="input-group">
+    <label for="compression-mode">Compression Mode</label>
+    <select id="compression-mode">
+      <option value="quality">Quality</option>
+      <option value="target-size">Target Size (KB)</option>
+    </select>
+  </div>
 
-    // --- Bookmark Button Logic ---
-    const bookmarkBtn = document.getElementById('bookmark-btn');
-    bookmarkBtn.onclick = function() {
-      alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Cmd+D' : 'Ctrl+D') + ' to bookmark this page!');
-    };
+  <div id="quality-mode-ui" class="input-group">
+    <label for="img-quality" class="lbl-quality">Quality <span id="quality-value">90</span>%</label>
+    <input type="range" id="img-quality" min="10" max="100" value="90">
+  </div>
 
-    // --- Drag & Drop Logic ---
-    const dropArea = document.getElementById('drop-area');
-    const imgUpload = document.getElementById('img-upload');
-    const dropText = document.getElementById('drop-text');
-    const imageInfoDisplay = document.getElementById('image-info');
-    let currentFile = null;
-    dropArea.addEventListener('click', () => imgUpload.click());
-    ['dragenter', 'dragover'].forEach(eventName => {
-      dropArea.addEventListener(eventName, e => {
-        e.preventDefault(); e.stopPropagation();
-        dropArea.classList.add('dragover');
-        dropText.textContent = dropText.getAttribute('data-drag') || "Release to select file";
+  <div id="target-size-mode-ui" class="input-group" style="display:none;">
+    <label for="target-size">Target Size (KB)</label>
+    <input type="number" id="target-size" min="1" placeholder="e.g., 100">
+    <div id="target-size-note" class="dimension-note">Only applies to JPEG and WEBP formats.</div>
+  </div>
+  
+  <div class="input-group">
+    <button id="img-convert">Resize & Download</button>
+  </div>
+  
+  <div class="formats-row">
+    <div class="format-card">PNG ⇄ JPG</div>
+    <div class="format-card">JPG ⇄ WEBP</div>
+    <div class="format-card">PNG ⇄ WEBP</div>
+    <div class="format-card">BMP ⇄ JPG</div>
+    <div class="format-card">GIF ⇄ PNG</div>
+    <div class="format-card">TIFF ⇄ JPG</div>
+  </div>
+
+  <div class="how-to-use">
+    <h2>Your Free Online Image Converter & Resizer</h2>
+    <p>Welcome to the easiest way to <strong>resize and convert images</strong> online. Our tool helps you quickly adjust photo dimensions, <strong>compress images</strong>, and <strong>change formats</strong> like JPG, PNG, WEBP, and more. Everything is 100% free, private, and runs in your browser—no uploads required.</p>
+    <h3>1. Upload or Drop Your Image</h3>
+    <p>Start by dragging your file onto the drop zone, or click to browse. We support all common formats.</p>
+    <h3>2. Resize, Rotate, or Flip</h3>
+    <p>Enter a new width or height in pixels (px). Keep "Maintain Ratio" on to avoid stretching. Use the buttons to rotate or flip.</p>
+    <h3>3. Choose Format & Compression</h3>
+    <p>Select your output format from the dropdown (e.g., convert PNG to JPG, WEBP to PNG, or JPG to WEBP). To compress image size, use the "Quality" slider. Or switch to "Target Size (KB)" for JPEG/WEBP.</p>
+    <h3>4. Download Your New Image</h3>
+    <p>Click "Resize & Download." Processing is done locally in your browser for complete privacy.</p>
+  </div>
+
+  <canvas id="img-canvas" style="display:none;"></canvas>
+  <div class="note" id="privacy-note">All processing is local—no image leaves your browser.</div>
+</div>
+
+<footer>
+  <div class="madein">Made with ❤️ in 🇮🇳.</div>
+  <div>&copy; 2025 Easy Image Converter & Resizer (easyimagecr.in). All rights reserved.</div>
+</footer>
+
+<!-- Inline JS: theme + active link + tool logic -->
+<script>
+(function(){
+  function updateThemeButton(btn){
+    btn.textContent = document.body.classList.contains('dark') ? "☀️ Light Mode" : "🌙 Dark Mode";
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var btn = document.getElementById('theme-toggle');
+    if(btn){
+      btn.addEventListener('click', function(){
+        document.body.classList.toggle('dark');
+        updateThemeButton(btn);
       });
-    });
-    ['dragleave', 'drop'].forEach(eventName => {
-      dropArea.addEventListener(eventName, e => {
-        e.preventDefault(); e.stopPropagation();
-        dropArea.classList.remove('dragover');
-        dropText.textContent = "Drag & drop your image or click to select";
-      });
-    });
-    dropArea.addEventListener('drop', e => {
-      const file = e.dataTransfer.files[0];
-      if (file) {
-        imgUpload.files = e.dataTransfer.files;
-        handleImage(file);
-      }
-    });
-    imgUpload.addEventListener('change', () => {
-      if (imgUpload.files.length > 0) {
-        handleImage(imgUpload.files[0]);
-      }
-    });
-    
-    // MODIFIED: showImageInfo now accepts a string for outSize
-    function showImageInfo(name, format, w, h, size, outputW, outputH, outSize) {
-      imageInfoDisplay.innerHTML = `
-        <strong>${name}</strong><br>
-        <span>Format: ${format} &nbsp; Size: ${size} KB</span><br>
-        <span>Original: ${w} × ${h} px</span><br>
-        <span>Output: ${outputW} × ${outputH} px${outSize ? ` &nbsp;~${outSize}` : ''}</span>`;
-      imageInfoDisplay.style.display = 'block';
+      updateThemeButton(btn);
     }
-    
-    // --- Main App Logic ---
-    const imgWidthInput = document.getElementById('img-width');
-    const imgHeightInput = document.getElementById('img-height');
-    const maintainRatio = document.getElementById('maintain-ratio');
-    const imgConvertBtn = document.getElementById('img-convert');
-    const imgCanvas = document.getElementById('img-canvas');
-    const imgCtx = imgCanvas.getContext('2d');
-    const imgPreview = document.getElementById('img-preview');
-    const imgFormatSelect = document.getElementById('img-format');
-    const imgQualityInput = document.getElementById('img-quality');
-    const qualityValue = document.getElementById('quality-value');
-    const rotateBtn = document.getElementById('rotate-btn');
-    const flipHBtn = document.getElementById('flip-h-btn');
-    const flipVBtn = document.getElementById('flip-v-btn');
-    const resetBtn = document.getElementById('reset-btn');
-    
-    // NEW: Get Compression Mode elements
-    const compressionModeSelect = document.getElementById('compression-mode');
-    const qualityModeUI = document.getElementById('quality-mode-ui');
-    const targetSizeModeUI = document.getElementById('target-size-mode-ui');
-    const targetSizeInput = document.getElementById('target-size');
-    const targetSizeNote = document.getElementById('target-size-note');
+    var current = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.header-nav a').forEach(function(a){
+      var href = a.getAttribute('href');
+      if(href === current || (href==='index.html' && (current===''||current==='index.html'))){
+        a.style.fontWeight='700';
+        a.style.textDecoration='underline';
+      }
+    });
+  });
+})();
+</script>
 
-    let currentImage = null, originalWidth = 0, originalHeight = 0;
-    let imgRotation = 0, imgFlippedH = false, imgFlippedV = false;
-    let isUpdating = false;
-    
-    // --- Helper Functions ---
-    
-    // NEW: Checks if a format supports quality-based compression
-    function isLossyFormat(format) {
-      return format.includes('jpeg') || format.includes('webp');
+<script>
+(function(){
+  const dropArea=document.getElementById('drop-area');
+  if(!dropArea) return;
+
+  const imgUpload=document.getElementById('img-upload');
+  const dropText=document.getElementById('drop-text');
+  const imageInfoDisplay=document.getElementById('image-info');
+  const imgWidthInput=document.getElementById('img-width');
+  const imgHeightInput=document.getElementById('img-height');
+  const maintainRatio=document.getElementById('maintain-ratio');
+  const imgConvertBtn=document.getElementById('img-convert');
+  const imgCanvas=document.getElementById('img-canvas');
+  const imgCtx=imgCanvas.getContext('2d');
+  const imgPreview=document.getElementById('img-preview');
+  const imgFormatSelect=document.getElementById('img-format');
+  const imgQualityInput=document.getElementById('img-quality');
+  const qualityValue=document.getElementById('quality-value');
+  const rotateBtn=document.getElementById('rotate-btn');
+  const flipHBtn=document.getElementById('flip-h-btn');
+  const flipVBtn=document.getElementById('flip-v-btn');
+  const resetBtn=document.getElementById('reset-btn');
+  const compressionModeSelect=document.getElementById('compression-mode');
+  const qualityModeUI=document.getElementById('quality-mode-ui');
+  const targetSizeModeUI=document.getElementById('target-size-mode-ui');
+  const targetSizeInput=document.getElementById('target-size');
+  const targetSizeNote=document.getElementById('target-size-note');
+
+  let currentImage=null, currentFile=null, originalWidth=0, originalHeight=0;
+  let imgRotation=0, imgFlippedH=false, imgFlippedV=false, isUpdating=false;
+
+  function showImageInfo(name, format, w, h, sizeKB, outW, outH, outSize){
+    imageInfoDisplay.innerHTML = '<strong>'+name+'</strong><br>' +
+      '<span>Format: '+format+' &nbsp; Size: '+sizeKB+' KB</span><br>' +
+      '<span>Original: '+w+' × '+h+' px</span><br>' +
+      '<span>Output: '+outW+' × '+outH+' px'+(outSize ? ' &nbsp;~'+outSize : '')+'</span>';
+    imageInfoDisplay.style.display='block';
+  }
+
+  const isLossyFormat = f => f.includes('jpeg') || f.includes('webp');
+
+  function updateCompressionUI(){
+    const format=imgFormatSelect.value;
+    const mode=compressionModeSelect.value;
+    const targetOpt = compressionModeSelect.querySelector('option[value="target-size"]');
+    if(isLossyFormat(format)){
+      if (targetOpt) targetOpt.disabled=false;
+      if (targetSizeNote) targetSizeNote.style.display='block';
+      if(mode==='quality'){ qualityModeUI.style.display='block'; targetSizeModeUI.style.display='none'; }
+      else { qualityModeUI.style.display='none'; targetSizeModeUI.style.display='block'; }
+    } else {
+      if (targetOpt) targetOpt.disabled=true;
+      if (targetSizeNote) targetSizeNote.style.display='none';
+      compressionModeSelect.value='quality';
+      qualityModeUI.style.display='block';
+      targetSizeModeUI.style.display='none';
     }
-    
-    // NEW: Updates the UI based on format and mode selection
-    function updateCompressionUI() {
-      const selectedFormat = imgFormatSelect.value;
-      const selectedMode = compressionModeSelect.value;
-      const targetSizeOption = compressionModeSelect.querySelector('option[value="target-size"]');
+    updateOutputEstimate();
+  }
 
-      if (isLossyFormat(selectedFormat)) {
-        // Enable "Target Size" option
-        targetSizeOption.disabled = false;
-        targetSizeNote.style.display = 'block';
-        
-        if (selectedMode === 'quality') {
-          qualityModeUI.style.display = 'block';
-          targetSizeModeUI.style.display = 'none';
-        } else { // "target-size"
-          qualityModeUI.style.display = 'none';
-          targetSizeModeUI.style.display = 'block';
-        }
-      } else {
-        // Not a lossy format (PNG, BMP, etc.)
-        // Force "Quality" mode and disable "Target Size"
-        targetSizeOption.disabled = true;
-        targetSizeNote.style.display = 'none';
-        compressionModeSelect.value = 'quality';
-        
-        qualityModeUI.style.display = 'block';
-        targetSizeModeUI.style.display = 'none';
-      }
-      updateOutputEstimate();
+  function findDataURLToTargetSize(canvas, format, targetBytes){
+    let minQ=0.0, maxQ=1.0; const head='data:'+format+';base64,';
+    let minDataURL=canvas.toDataURL(format,0.0);
+    let minBytes=Math.round((minDataURL.length-head.length)*0.75);
+    if(minBytes>targetBytes) return minDataURL;
+    let maxDataURL=canvas.toDataURL(format,1.0);
+    let maxBytes=Math.round((maxDataURL.length-head.length)*0.75);
+    if(maxBytes<=targetBytes) return maxDataURL;
+    let best=maxDataURL, bestErr=Math.abs(maxBytes-targetBytes);
+    for(let i=0;i<8;i++){
+      let q=(minQ+maxQ)/2;
+      let dataURL=canvas.toDataURL(format,q);
+      let bytes=Math.round((dataURL.length-head.length)*0.75);
+      let err=bytes-targetBytes;
+      if(Math.abs(err)<bestErr){ bestErr=Math.abs(err); best=dataURL; }
+      if(err>0) maxQ=q; else minQ=q;
     }
-    
-    // NEW: Binary search to find the quality for a target file size
-    function findDataURLToTargetSize(canvas, format, targetBytes) {
-      let minQ = 0.0, maxQ = 1.0;
-      let bestDataURL = '';
-      let bestError = Infinity;
+    return best;
+  }
 
-      // Get header length to calculate byte size more accurately
-      const head = 'data:' + format + ';base64,';
-      
-      // Get DataURL at min quality (0.0)
-      let minDataURL = canvas.toDataURL(format, 0.0);
-      let minBytes = Math.round((minDataURL.length - head.length) * 0.75);
-      
-      // If min quality is already too big, nothing we can do.
-      if (minBytes > targetBytes) {
-        return minDataURL;
-      }
-      
-      // Get DataURL at max quality (1.0)
-      let maxDataURL = canvas.toDataURL(format, 1.0);
-      let maxBytes = Math.round((maxDataURL.length - head.length) * 0.75);
-      
-      // If max quality is already smaller than target, just return max quality
-      if (maxBytes <= targetBytes) {
-        return maxDataURL;
-      }
-
-      // Perform binary search (8 iterations is usually enough)
-      bestDataURL = maxDataURL; // Start with max as a fallback
-      bestError = Math.abs(maxBytes - targetBytes);
-
-      for (let i = 0; i < 8; i++) {
-        let q = (minQ + maxQ) / 2;
-        let dataURL = canvas.toDataURL(format, q);
-        let currentBytes = Math.round((dataURL.length - head.length) * 0.75);
-        
-        let error = currentBytes - targetBytes;
-        
-        // If this is the closest we've found, save it
-        if (Math.abs(error) < bestError) {
-          bestError = Math.abs(error);
-          bestDataURL = dataURL;
-        }
-        
-        if (error > 0) { // Too big, lower the max quality
-          maxQ = q;
-        } else { // Too small, raise the min quality
-          minQ = q;
-        }
-      }
-      
-      return bestDataURL;
-    }
-
-    // --- Event Listeners ---
-    imgQualityInput.addEventListener('input', () => {
-      qualityValue.textContent = imgQualityInput.value;
-      updateOutputEstimate();
-    });
-    
-    // MODIFIED: Add new listeners
-    [imgWidthInput, imgHeightInput, maintainRatio].forEach(el => {
-      el.addEventListener('input', updateOutputEstimate);
-      el.addEventListener('change', updateOutputEstimate);
-    });
-    
-    imgFormatSelect.addEventListener('change', updateCompressionUI);
-    compressionModeSelect.addEventListener('change', updateCompressionUI);
-    targetSizeInput.addEventListener('input', updateOutputEstimate);
-
-    rotateBtn.addEventListener('click', () => {
-      imgRotation = (imgRotation + 90) % 360; 
-      drawPreview(); 
-      updateOutputEstimate();
-    });
-    flipHBtn.addEventListener('click', () => {
-      imgFlippedH = !imgFlippedH; 
-      drawPreview(); 
-      updateOutputEstimate();
-    });
-    flipVBtn.addEventListener('click', () => {
-      imgFlippedV = !imgFlippedV; 
-      drawPreview(); 
-      updateOutputEstimate();
-    });
-    
-    // --- Core Functions ---
-    function handleImage(file) {
-      currentFile = file;
-      const url = URL.createObjectURL(file);
-      imgPreview.src = url;
-      imgPreview.style.display = 'block';
-      let format = file.type.split('/')[1].toUpperCase();
-      let sizeKB = Math.round(file.size / 1024);
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        currentImage = new Image();
-        currentImage.onload = () => {
-          originalWidth = currentImage.width;
-          originalHeight = currentImage.height;
-          imgWidthInput.placeholder = originalWidth;
-          imgHeightInput.placeholder = originalHeight;
-          imgWidthInput.value = '';
-          imgHeightInput.value = '';
-          imgCanvas.width = originalWidth;
-          imgCanvas.height = originalHeight;
-          imgRotation = 0; imgFlippedH = false; imgFlippedV = false;
-          showImageInfo(file.name, format, originalWidth, originalHeight, sizeKB, originalWidth, originalHeight, `${sizeKB} KB`);
-          updateOutputEstimate();
-        };
-        currentImage.src = e.target.result;
+  function handleImage(file){
+    currentFile=file;
+    const url=URL.createObjectURL(file);
+    imgPreview.src=url; imgPreview.style.display='block';
+    let format=(file.type.split('/')[1]||'').toUpperCase();
+    let sizeKB=Math.round(file.size/1024);
+    const reader=new FileReader();
+    reader.onload=e=>{
+      currentImage=new Image();
+      currentImage.onload=()=>{
+        originalWidth=currentImage.width; originalHeight=currentImage.height;
+        imgWidthInput.placeholder=originalWidth; imgHeightInput.placeholder=originalHeight;
+        imgWidthInput.value=''; imgHeightInput.value='';
+        imgCanvas.width=originalWidth; imgCanvas.height=originalHeight;
+        imgRotation=0; imgFlippedH=false; imgFlippedV=false;
+        showImageInfo(file.name, format, originalWidth, originalHeight, sizeKB, originalWidth, originalHeight, sizeKB+' KB');
+        updateOutputEstimate();
       };
-      reader.readAsDataURL(file);
-    }
-    
-    imgWidthInput.addEventListener('input', () => {
-      if (maintainRatio.checked && originalWidth && originalHeight && !isUpdating) {
-        if (imgWidthInput.value) {
-          isUpdating = true;
-          imgHeightInput.value = Math.round((imgWidthInput.value / originalWidth) * originalHeight);
-          isUpdating = false;
-          updateOutputEstimate();
-        }
-      } else updateOutputEstimate();
-    });
-    imgHeightInput.addEventListener('input', () => {
-      if (maintainRatio.checked && originalWidth && originalHeight && !isUpdating) {
-        if (imgHeightInput.value) {
-          isUpdating = true;
-          imgWidthInput.value = Math.round((imgHeightInput.value / originalHeight) * originalWidth);
-          isUpdating = false;
-          updateOutputEstimate();
-        }
-      } else updateOutputEstimate();
-    });
-    
-    function drawPreview() {
-      if (!currentImage) return;
-      const maxShowW = 400, maxShowH = 220;
-      let w = originalWidth, h = originalHeight;
-      let previewW = (imgRotation % 180 === 0) ? w : h;
-      let previewH = (imgRotation % 180 === 0) ? h : w;
-      let scale = Math.min(1, maxShowW / previewW, maxShowH / previewH);
-      let displayW = previewW * scale, displayH = previewH * scale;
-      let c = document.createElement('canvas'), ctx = c.getContext('2d');
-      c.width = previewW; c.height = previewH;
-      ctx.save();
-      ctx.translate(c.width / 2, c.height / 2);
-      if (imgRotation !== 0) ctx.rotate(imgRotation * Math.PI / 180);
-      ctx.scale(imgFlippedH ? -1 : 1, imgFlippedV ? -1 : 1);
-      ctx.drawImage(currentImage, -w / 2, -h / 2, w, h);
-      ctx.restore();
-      imgPreview.width = displayW; imgPreview.height = displayH;
-      imgPreview.style.display = 'block';
-      imgPreview.src = c.toDataURL("image/png");
-    }
-    
-    // MODIFIED: To handle new compression modes
-    function updateOutputEstimate() {
-      if (!currentImage || !currentFile) return;
-      let w = originalWidth, h = originalHeight;
-      let newW = parseInt(imgWidthInput.value, 10), newH = parseInt(imgHeightInput.value, 10);
-      if (!newW && !newH) { newW = w; newH = h; }
-      else if (maintainRatio.checked) {
-        if (newW && !newH) newH = Math.round((h / w) * newW);
-        if (!newW && newH) newW = Math.round((w / h) * newH);
-      }
-      let finalW = newW, finalH = newH;
-      if (imgRotation % 180 !== 0) { let t = finalW; finalW = finalH; finalH = t; }
-      
-      const selectedFormat = imgFormatSelect.value;
-      const selectedMode = compressionModeSelect.value;
-      let outputSizeStr = '';
-
-      if (selectedMode === 'quality' || !isLossyFormat(selectedFormat)) {
-        // Quality Mode OR Lossless format: Estimate size
-        let offCanvas = document.createElement('canvas');
-        offCanvas.width = finalW; offCanvas.height = finalH;
-        let offCtx = offCanvas.getContext('2d');
-        offCtx.save();
-        offCtx.translate(finalW / 2, finalH / 2);
-        offCtx.rotate(imgRotation * Math.PI / 180);
-        offCtx.scale(imgFlippedH ? -1 : 1, imgFlippedV ? -1 : 1);
-        offCtx.drawImage(currentImage, -newW / 2, -newH / 2, newW, newH);
-        offCtx.restore();
-        
-        let q = 0.9;
-        if (isLossyFormat(selectedFormat)) {
-          q = parseInt(imgQualityInput.value, 10) / 100;
-        }
-        let dataURL = offCanvas.toDataURL(selectedFormat, q);
-        let head = 'data:' + selectedFormat + ';base64,';
-        let estimatedKB = Math.round(((dataURL.length - head.length) * 0.75) / 1024);
-        outputSizeStr = `${estimatedKB} KB`;
-        
-      } else {
-        // Target Size Mode: Just show the target
-        let targetKB = parseInt(targetSizeInput.C.value, 10) || 0;
-        outputSizeStr = `${targetKB} KB (Target)`;
-      }
-
-      let format = selectedFormat.replace('image/', '').toUpperCase();
-      let inputKB = Math.round(currentFile.size / 1024);
-      showImageInfo(currentFile.name, format, w, h, inputKB, finalW, finalH, outputSizeStr);
-    }
-    
-    imgConvertBtn.onclick = function () {
-      if (!currentImage || !currentFile) {
-        alert('Please upload an image first.');
-        return;
-      }
-      convertImage(currentFile);
+      currentImage.src=e.target.result;
     };
-    
-    // MODIFIED: To handle new compression modes for download
-    function convertImage(file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        let img = new Image();
-        img.onload = () => {
-          let w = img.width, h = img.height;
-          let newW = parseInt(imgWidthInput.value, 10);
-          let newH = parseInt(imgHeightInput.value, 10);
-          if (!newW && !newH) { newW = w; newH = h; }
-          else if (maintainRatio.checked) {
-            if (newW && !newH) newH = Math.round((h / w) * newW);
-            if (!newW && newH) newW = Math.round((w / h) * newH);
-          }
-          let finalW = newW, finalH = newH;
-          if (imgRotation % 180 !== 0) { let t = finalW; finalW = finalH; finalH = t; }
-          
-          imgCanvas.width = finalW;
-          imgCanvas.height = finalH;
-          imgCtx.save();
-          imgCtx.translate(finalW / 2, finalH / 2);
-          imgCtx.rotate(imgRotation * Math.PI / 180);
-          imgCtx.scale(imgFlippedH ? -1 : 1, imgFlippedV ? -1 : 1);
-          imgCtx.drawImage(img, -newW / 2, -newH / 2, newW, newH);
-          imgCtx.restore();
-          
-          const selectedFormat = imgFormatSelect.value;
-          const selectedMode = compressionModeSelect.value;
-          let dataURL = '';
+    reader.readAsDataURL(file);
+  }
 
-          if (selectedMode === 'quality' || !isLossyFormat(selectedFormat)) {
-            // Quality Mode OR Lossless format
-            let q = 1.0; // Default for PNG/BMP
-            if (isLossyFormat(selectedFormat)) {
-              q = parseInt(imgQualityInput.value, 10) / 100;
-            }
-            dataURL = imgCanvas.toDataURL(selectedFormat, q);
-          } else {
-            // Target Size Mode
-            let targetBytes = (parseInt(targetSizeInput.value, 10) || 100) * 1024;
-            dataURL = findDataURLToTargetSize(imgCanvas, selectedFormat, targetBytes);
-          }
-          
-          const ext = selectedFormat.split('/')[1];
-          const link = document.createElement('a');
-          link.href = dataURL;
-          link.download = `easyimagecr.in_${file.name.replace(/\.[^/.]+$/, "")}.${ext}`;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          updateOutputEstimate(); // Re-run estimate to show final size
-        };
-        img.src = e.target.result;
+  function drawPreview(){
+    if(!currentImage) return;
+    const maxShowW=400, maxShowH=220;
+    let w=originalWidth, h=originalHeight;
+    let previewW=(imgRotation%180===0)?w:h;
+    let previewH=(imgRotation%180===0)?h:w;
+    let scale=Math.min(1, maxShowW/previewW, maxShowH/previewH);
+    let displayW=previewW*scale, displayH=previewH*scale;
+    let c=document.createElement('canvas'), ctx=c.getContext('2d');
+    c.width=previewW; c.height=previewH;
+    ctx.save();
+    ctx.translate(c.width/2,c.height/2);
+    if(imgRotation!==0) ctx.rotate(imgRotation*Math.PI/180);
+    ctx.scale(imgFlippedH?-1:1, imgFlippedV?-1:1);
+    ctx.drawImage(currentImage, -w/2, -h/2, w, h);
+    ctx.restore();
+    imgPreview.width=displayW; imgPreview.height=displayH;
+    imgPreview.style.display='block';
+    imgPreview.src=c.toDataURL("image/png");
+  }
+
+  function updateOutputEstimate(){
+    if(!currentImage || !currentFile) return;
+    let w=originalWidth, h=originalHeight;
+    let newW=parseInt(imgWidthInput.value,10), newH=parseInt(imgHeightInput.value,10);
+    if(!newW && !newH){ newW=w; newH=h; }
+    else if(maintainRatio.checked){
+      if(newW && !newH) newH=Math.round((h/w)*newW);
+      if(!newW && newH) newW=Math.round((w/h)*newH);
+    }
+    let finalW=newW, finalH=newH;
+    if(imgRotation%180!==0){ let t=finalW; finalW=finalH; finalH=t; }
+
+    const selectedFormat=imgFormatSelect.value;
+    const selectedMode=compressionModeSelect.value;
+    let outputSizeStr='';
+
+    let offCanvas=document.createElement('canvas');
+    offCanvas.width=finalW; offCanvas.height=finalH;
+    let offCtx=offCanvas.getContext('2d');
+    offCtx.save();
+    offCtx.translate(finalW/2, finalH/2);
+    offCtx.rotate(imgRotation*Math.PI/180);
+    offCtx.scale(imgFlippedH?-1:1, imgFlippedV?-1:1);
+    offCtx.drawImage(currentImage, -newW/2, -newH/2, newW, newH);
+    offCtx.restore();
+
+    const lossy = isLossyFormat(selectedFormat);
+    if(selectedMode==='quality' || !lossy){
+      let q = lossy ? (parseInt(imgQualityInput.value,10)/100) : 1.0;
+      let dataURL=offCanvas.toDataURL(selectedFormat, q);
+      let head='data:'+selectedFormat+';base64,';
+      let estKB=Math.round(((dataURL.length-head.length)*0.75)/1024);
+      outputSizeStr = estKB+' KB';
+    } else {
+      let targetKB=parseInt(targetSizeInput.value,10)||0;
+      outputSizeStr = targetKB+' KB (Target)';
+    }
+
+    let format = selectedFormat.replace('image/','').toUpperCase();
+    let inputKB = Math.round(currentFile.size/1024);
+    showImageInfo(currentFile.name, format, w, h, inputKB, finalW, finalH, outputSizeStr);
+    drawPreview();
+  }
+
+  ['dragenter','dragover'].forEach(ev=>dropArea.addEventListener(ev, e=>{
+    e.preventDefault(); e.stopPropagation();
+    dropArea.classList.add('dragover');
+    dropText.textContent = 'Release to select file';
+  }));
+  ['dragleave','drop'].forEach(ev=>dropArea.addEventListener(ev, e=>{
+    e.preventDefault(); e.stopPropagation();
+    dropArea.classList.remove('dragover');
+    dropText.textContent = 'Drag & drop your image or click to select';
+  }));
+  dropArea.addEventListener('click', ()=> imgUpload.click());
+  dropArea.addEventListener('drop', e=>{
+    const file = e.dataTransfer.files[0];
+    if(file){ imgUpload.files = e.dataTransfer.files; handleImage(file); }
+  });
+  imgUpload.addEventListener('change', ()=>{
+    if(imgUpload.files.length>0) handleImage(imgUpload.files[0]);
+  });
+
+  imgQualityInput.addEventListener('input', ()=>{
+    qualityValue.textContent = imgQualityInput.value;
+    updateOutputEstimate();
+  });
+  ['input','change'].forEach(evt=>{
+    [imgWidthInput, imgHeightInput, maintainRatio].forEach(el=> el.addEventListener(evt, updateOutputEstimate));
+  });
+  imgFormatSelect.addEventListener('change', updateCompressionUI);
+  compressionModeSelect.addEventListener('change', updateCompressionUI);
+  targetSizeInput.addEventListener('input', updateOutputEstimate);
+
+  rotateBtn.addEventListener('click', ()=>{ imgRotation=(imgRotation+90)%360; drawPreview(); updateOutputEstimate(); });
+  flipHBtn.addEventListener('click', ()=>{ imgFlippedH=!imgFlippedH; drawPreview(); updateOutputEstimate(); });
+  flipVBtn.addEventListener('click', ()=>{ imgFlippedV=!imgFlippedV; drawPreview(); updateOutputEstimate(); });
+
+  imgWidthInput.addEventListener('input', ()=>{
+    if(maintainRatio.checked && originalWidth && originalHeight && !isUpdating){
+      if(imgWidthInput.value){ isUpdating=true; imgHeightInput.value=Math.round((imgWidthInput.value/originalWidth)*originalHeight); isUpdating=false; updateOutputEstimate(); }
+    } else updateOutputEstimate();
+  });
+  imgHeightInput.addEventListener('input', ()=>{
+    if(maintainRatio.checked && originalWidth && originalHeight && !isUpdating){
+      if(imgHeightInput.value){ isUpdating=true; imgWidthInput.value=Math.round((imgHeightInput.value/originalHeight)*originalWidth); isUpdating=false; updateOutputEstimate(); }
+    } else updateOutputEstimate();
+  });
+
+  function convertImage(file){
+    const reader=new FileReader();
+    reader.onload=e=>{
+      let img=new Image();
+      img.onload=()=>{
+        let w=img.width, h=img.height;
+        let newW=parseInt(imgWidthInput.value,10), newH=parseInt(imgHeightInput.value,10);
+        if(!newW && !newH){ newW=w; newH=h; }
+        else if(maintainRatio.checked){
+          if(newW && !newH) newH=Math.round((h/w)*newW);
+          if(!newW && newH) newW=Math.round((w/h)*newH);
+        }
+        let finalW=newW, finalH=newH;
+        if(imgRotation%180!==0){ let t=finalW; finalW=finalH; finalH=t; }
+        imgCanvas.width=finalW; imgCanvas.height=finalH;
+        imgCtx.save();
+        imgCtx.translate(finalW/2, finalH/2);
+        imgCtx.rotate(imgRotation*Math.PI/180);
+        imgCtx.scale(imgFlippedH?-1:1, imgFlippedV?-1:1);
+        imgCtx.drawImage(img, -newW/2, -newH/2, newW, newH);
+        imgCtx.restore();
+
+        const selectedFormat=imgFormatSelect.value;
+        const selectedMode=compressionModeSelect.value;
+        let dataURL='';
+        const lossy = isLossyFormat(selectedFormat);
+
+        if(selectedMode==='quality' || !lossy){
+          let q = lossy ? (parseInt(imgQualityInput.value,10)/100) : 1.0;
+          dataURL = imgCanvas.toDataURL(selectedFormat, q);
+        } else {
+          let targetBytes = (parseInt(targetSizeInput.value,10)||100) * 1024;
+          dataURL = findDataURLToTargetSize(imgCanvas, selectedFormat, targetBytes);
+        }
+
+        const ext = selectedFormat.split('/')[1];
+        const link=document.createElement('a');
+        link.href=dataURL;
+        link.download='easyimagecr.in_' + (file.name.replace(/\.[^/.]+$/, '')) + '.' + ext;
+        document.body.appendChild(link); link.click(); document.body.removeChild(link);
+        updateOutputEstimate();
       };
-      reader.readAsDataURL(file);
-    }
-    
-    resetBtn.onclick = function () {
-      currentFile = null;
-      currentImage = null;
-      imgPreview.style.display = "none";
-      imageInfoDisplay.style.display = "none";
-      imgWidthInput.value = imgHeightInput.value = "";
-      imgWidthInput.placeholder = imgHeightInput.placeholder = "";
-      imgCanvas.width = imgCanvas.height = 0;
-      imgRotation = 0; imgFlippedH = false; imgFlippedV = false;
-      imgUpload.value = "";
+      img.src=e.target.result;
     };
+    reader.readAsDataURL(file);
+  }
 
-    // --- In-Page View Logic ---
-    const toolView = document.querySelector('.container');
-    const pageView = document.getElementById('page-content-container');
-    const allPageSections = document.querySelectorAll('.page-section');
-    const backBtn = document.getElementById('back-to-tool-btn');
-    const footer = document.querySelector('footer'); 
+  imgConvertBtn.addEventListener('click', ()=>{
+    if(!currentImage || !currentFile){ alert('Please upload an image first.'); return; }
+    convertImage(currentFile);
+  });
 
-    function showPage(pageId) {
-      toolView.style.display = 'none';
-      allPageSections.forEach(section => {
-        section.style.display = 'none';
-      });
-      document.getElementById(pageId).style.display = 'block';
-      pageView.style.display = 'block';
-      footer.style.display = 'none';
-      window.scrollTo(0, 0);
-    }
+  const bookmarkBtn = document.getElementById('bookmark-btn');
+  if(bookmarkBtn){
+    bookmarkBtn.onclick = function(){
+      alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac')!=-1 ? 'Cmd+D' : 'Ctrl+D') + ' to bookmark this page!');
+    };
+  }
 
-    function showToolView() {
-      pageView.style.display = 'none';
-      toolView.style.display = 'block';
-      footer.style.display = 'block';
-    }
+  updateCompressionUI();
+})();
+</script>
 
-    document.getElementById('show-about').onclick = function(e) { e.preventDefault(); showPage('about-content'); };
-    document.getElementById('show-faq').onclick = function(e) { e.preventDefault(); showPage('faq-content'); };
-    document.getElementById('show-contact').onclick = function(e) { e.preventDefault(); showPage('contact-content'); };
-    document.getElementById('show-privacy').onclick = function(e) { e.preventDefault(); showPage('privacy-content'); };
-    document.getElementById('show-terms').onclick = function(e) { e.preventDefault(); showPage('terms-content'); };
-    document.getElementById('show-disclaimer').onclick = function(e) { e.preventDefault(); showPage('disclaimer-content'); };
-    backBtn.onclick = showToolView;
-    
-    // --- Initial Run ---
-    updateCompressionUI(); // Run on load to set the correct UI
-    
-  </script>
 </body>
 </html>
+
