@@ -11,7 +11,8 @@
   gtag('config', 'G-THV9B0DZ49');
 </script>
   <meta charset="UTF-8">
-  <title>Easy Image Converter & Resizer | Free & Private (EasyImageCR.in)</title>
+  
+  <meta name="twitter:url" content="https://easyimagecr.in/" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
@@ -486,6 +487,41 @@
   updateCompressionUI();
 })();
 </script>
+
+
+
+
+
+
+
+
+<!-- Assistant: small image share button (left-bottom edge) -->
+<style>
+#ea-share-img{position:fixed; left:6px; bottom:6px; z-index:10000; display:block; -webkit-tap-highlight-color: transparent;}
+#ea-share-img img{width:40px; height:40px; display:block; border-radius:6px; box-shadow:0 6px 18px rgba(0,0,0,0.12); cursor:pointer; border:0;}
+@media(max-width:420px){ #ea-share-img img{width:36px; height:36px;} }
+</style>
+<div id="ea-share-img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" role="img" aria-label="Share" focusable="false">
+  <rect width="24" height="24" rx="5" fill="#2a72e7"/>
+  <path d="M4 12v6a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-6" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M12 3v10" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M7 8l5-5 5 5" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg></div>
+<script>
+(function(){
+  var container = document.getElementById('ea-share-img');
+  if(!container) return;
+  container.addEventListener('click', async function(){
+    var url = location.href;
+    if(navigator.share){
+      try{ await navigator.share({ title: document.title, url: url }); return; }catch(e){ /* ignore */ }
+    }
+    try{ await navigator.clipboard.writeText(url); alert('Link copied: ' + url); }
+    catch(e){ prompt('Copy link', url); }
+  });
+})();
+</script>
+<!-- End assistant share image button -->
 
 </body>
 </html>
