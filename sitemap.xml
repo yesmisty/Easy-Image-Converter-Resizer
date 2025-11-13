@@ -1,19 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://easyimagecr.in/</loc></url>
-  <url><loc>https://easyimagecr.in/about.html</loc></url>
-  <url><loc>https://easyimagecr.in/blogs.html</loc></url>
-  <url><loc>https://easyimagecr.in/faq.html</loc></url>
-  <url><loc>https://easyimagecr.in/contact.html</loc></url>
-  <url><loc>https://easyimagecr.in/privacy.html</loc></url>
-  <url><loc>https://easyimagecr.in/terms.html</loc></url>
-  <url><loc>https://easyimagecr.in/disclaimer.html</loc></url>
+
+  <url>
+    <loc>https://easyimagecr.in/</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/about.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/blogs.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/faq.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/contact.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/privacy.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/terms.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/disclaimer.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 
   <!-- Blog posts -->
-  <url><loc>https://easyimagecr.in/blogs/how-to-resize-online.html</loc></url>
-  <url><loc>https://easyimagecr.in/blogs/jpg-vs-png-vs-webp.html</loc></url>
-  <url><loc>https://easyimagecr.in/blogs/best-image-size-for-web.html</loc></url>
-  <url><loc>https://easyimagecr.in/blogs/compress-without-quality-loss.html</loc></url>
-  <url><loc>https://easyimagecr.in/blogs/heic-to-jpg-guide.html</loc></url>
-  <url><loc>https://easyimagecr.in/blogs/compress-image-under-100kb-india.html</loc></url>
+  <url>
+    <loc>https://easyimagecr.in/blogs/how-to-resize-large-photos-for-printing.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/blogs/designing-album-covers-that-grab-attention.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/blogs/resize-ai-cover-art-for-dsp.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/blogs/how-to-resize-online.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/blogs/jpg-vs-png-vs-webp.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/blogs/best-image-size-for-web.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/blogs/compress-without-quality-loss.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/blogs/heic-to-jpg-guide.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://easyimagecr.in/blogs/compress-image-under-100kb-india.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
