@@ -512,10 +512,24 @@
     reader.readAsDataURL(file);
   }
 
+  // === THIS IS THE MODIFIED BLOCK ===
   imgConvertBtn.addEventListener('click', ()=>{
     if(!currentImage || !currentFile){ alert('Please upload an image first.'); return; }
+    
+    // === ADDED THIS BLOCK TO TRACK THE EVENT ===
+    try {
+      gtag('event', 'tool_use', { 
+        'image_format': imgFormatSelect.value, 
+        'compression_mode': compressionModeSelect.value 
+      });
+    } catch (e) {
+      console.log("gtag event tracking error: " + e);
+    }
+    // ===========================================
+
     convertImage(currentFile);
   });
+  // === END OF MODIFIED BLOCK ===
 
   const bookmarkBtn = document.getElementById('bookmark-btn');
   if(bookmarkBtn){
