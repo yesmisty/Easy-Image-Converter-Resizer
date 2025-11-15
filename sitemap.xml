@@ -17,7 +17,7 @@
 
   <url>
     <loc>https://easyimagecr.in/blogs.html</loc>
-    <lastmod>2025-11-14</lastmod>
+    <lastmod>2025-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -57,7 +57,27 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- Blog posts -->
+  <url>
+    <loc>https://easyimagecr.in/blogs/shopify-image-optimization-guide.html</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://easyimagecr.in/blogs/what-is-webp-guide.html</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://easyimagecr.in/blogs/how-to-resize-for-social-media.html</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://easyimagecr.in/blogs/how-to-resize-large-photos-for-printing.html</loc>
     <lastmod>2025-11-14</lastmod>
