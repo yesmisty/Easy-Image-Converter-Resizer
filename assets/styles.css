@@ -1,4 +1,3 @@
-
 * , *::before, *::after { box-sizing: border-box; }
 body { font-family:'Roboto',Arial,sans-serif; background:#f9faff; margin:0; min-height:100vh; transition:background .2s,color .2s; }
 body.dark { background:#161b22; color:#e3e3e3; }
@@ -70,3 +69,76 @@ footer{ text-align:center; padding:18px 0 10px; font-size:14px; color:#6a798b; o
 body.dark footer{ color:#99b2d3; }
 
 @media (min-width:600px){ .resize-group{ flex-direction:row; justify-content:center; align-items:flex-end; gap:24px; margin-bottom:16px; } .resize-fields{ margin-bottom:0; gap:16px; max-width:none; } .resize-fields>div{ width:120px; } .ratio-box{ margin-bottom:8px; padding-top:10px; padding-bottom:10px; } .how-to-use{ padding:15px 30px; } }
+
+
+/* === NEW BLOG STYLES ADDED BELOW === */
+
+/* 1. Standard Blog Meta Data */
+.blog-meta {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+body.dark .blog-meta {
+  color: #99b2d3;
+}
+
+/* 2. Featured Cover Image */
+.blog-cover-image {
+  width: 100%;
+  max-width: 700px; /* Adjust as needed */
+  height: auto;
+  border-radius: 12px;
+  margin: 10px auto 25px;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+body.dark .blog-cover-image {
+   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+   border: 1px solid #333;
+}
+
+/* 3. Callout Blocks (for Tips, Warnings, Summaries) */
+.callout {
+  padding: 18px 22px;
+  margin: 25px 0;
+  border-radius: 10px;
+  background: #f3faff;
+  border-left: 5px solid #2a72e7;
+  text-align: left; /* Keeps text left-aligned */
+}
+.callout.tip {
+  border-color: #28a745; /* Green */
+  background: #f2fbf5;
+}
+.callout.warning {
+  border-color: #dc3545; /* Red */
+  background: #fff6f7;
+}
+
+/* Style for headings inside a callout */
+.callout h3, .callout h4 { 
+   margin-top: 0;
+   color: #2a72e7;
+}
+.callout.tip h3, .callout.tip h4 { color: #28a745; }
+.callout.warning h3, .callout.warning h4 { color: #dc3545; }
+
+/* --- Dark Mode Callouts --- */
+body.dark .callout {
+  background: #243040;
+  border-left-color: #73d6ff;
+}
+body.dark .callout h3, body.dark .callout h4 { color: #73d6ff; }
+
+body.dark .callout.tip {
+  background: #223a2b;
+  border-left-color: #58cc73;
+}
+body.dark .callout.tip h3, body.dark .callout.tip h4 { color: #58cc73; }
+
+body.dark .callout.warning {
+  background: #402428;
+  border-left-color: #f06a77;
+}
+body.dark .callout.warning h3, body.dark .callout.warning h4 { color: #f06a77; }
