@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-THV9B0DZ49"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-THV9B0DZ49"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -38,92 +37,110 @@
   }
   </script>
 
-  <link href="/assets/styles.css" rel="stylesheet">
-  <link href="/assets/blog.css" rel="stylesheet">
+  <link href="../assets/styles.css" rel="stylesheet">
 </head>
 
 <body>
 
 <header class="site-header">
   <nav class="header-nav">
-    <a href="/index.html">Home</a>
-    <a href="/about.html">About Us</a>
-    <a href="/blogs.html">Blogs</a>
-    <a href="/faq.html">❓ FAQ</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/privacy.html">Privacy Policy</a>
-    <a href="/terms.html">Terms of Use</a>
-    <a href="/disclaimer.html">Disclaimer</a>
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About Us</a>
+    <a href="../blogs.html">Blogs</a>
+    <a href="../faq.html">❓ FAQ</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy.html">Privacy Policy</a>
+    <a href="../terms.html">Terms of Use</a>
+    <a href="../disclaimer.html">Disclaimer</a>
     <button class="theme-toggle small-btn" id="theme-toggle">🌙 Dark Mode</button>
   </nav>
 </header>
 
-<div class="container">
-<article class="blog-post">
+<div class="container" style="text-align: left;">
 
   <h1>How to Resize Large Photos for Printing Without Losing Quality</h1>
-  <div class="meta">EasyImageCR — 2025-11-13 <span class="read-time">⏱️ 7 min read</span></div>
-
-  <!-- ⭐ FIXED IMAGE WRAPPER -->
-  <div class="blog-cover" style="max-width:760px;margin:0 auto;">
-      <img src="/assets/blog-previews/resize-large-photos-printing-preview.png" 
-           alt="How to Resize Large Photos for Printing Without Losing Quality"
-           style="width:100%;height:auto;display:block;border-radius:10px;">
+  
+  <div class="blog-meta">
+    <span>EasyImageCR • 2025-11-13</span>
+    <span class="read-time"> • ⏱️ 7 min read</span>
   </div>
 
-  <p class="glimpse"><strong>Glimpse:</strong> Large photos for print need careful resizing to maintain detail and colour. This guide walks you through lossless resizing, sharpening methods, color profiles, and export settings — plus quick tools like EasyImageCR.in for preparing web-friendly versions.</p>
+  <img src="../assets/blog-previews/resize-large-photos-printing-preview.png" 
+       alt="How to Resize Large Photos for Printing Without Losing Quality"
+       class="blog-cover-image">
 
-  <h2>Story</h2>
-  <p>Neha had a beautiful landscape shot taken on a high-resolution camera...</p>
-
-  <h2>Problem</h2>
-  <p>Resizing for print is different from resizing for the web...</p>
-
-  <h2>Steps</h2>
-  <ol>
-    <li><strong>Check target print size & DPI:</strong> 300 DPI for premium prints.</li>
-    <li><strong>Calculate pixel dimensions:</strong> Inches × DPI.</li>
-    <li><strong>Use full-resolution source files.</strong></li>
-    <li><strong>Choose a high-quality resampling method.</strong></li>
-    <li><strong>Sharpen slightly after resizing.</strong></li>
-    <li><strong>Embed correct color profile.</strong></li>
-    <li><strong>Export TIFF or high-quality JPEG.</strong></li>
-  </ol>
-
-  <div class="pro-tip">💡 <strong>Pro Tip 1:</strong> Always edit on a duplicate of your original file.</div>
-  <div class="pro-tip">💡 <strong>Pro Tip 2:</strong> Resize in two smaller steps if a single step softens details.</div>
-  <div class="pro-tip">💡 <strong>Pro Tip 3:</strong> Soft-proof before exporting for print accuracy.</div>
-
-  <h2>Example</h2>
-  <p>A 24×16 inch print at 200 DPI requires 4800×3200 px...</p>
-
-  <h3>Mini FAQ</h3>
-  <div class="faq">
-    <dt>Can I upscale a JPG to print larger?</dt>
-    <dd>Not recommended unless using AI upscaling tools.</dd>
-
-    <dt>TIFF or JPEG?</dt>
-    <dd>TIFF is best. JPEG (quality 90–100) is acceptable for labs.</dd>
-
-    <dt>Do color profiles matter?</dt>
-    <dd>Yes — always embed the printer’s recommended profile.</dd>
+  <div class="callout">
+    <p><strong>Glimpse:</strong> Large photos for print need careful resizing to maintain detail and colour. This guide walks you through calculating DPI, high-quality resampling, sharpening methods, and export settings to get professional, sharp prints.</p>
   </div>
 
-  <section class="related-posts">
-    <h3>Related Posts</h3>
-    <ul>
-      <li><a href="/blogs/how-to-resize-for-instagram.html">How to Resize Images for Instagram</a></li>
-      <li><a href="/blogs/how-to-compress-images-for-web.html">How to Compress Images for Web</a></li>
-      <li><a href="/blogs/how-to-prepare-youtube-thumbnails.html">How to Prepare YouTube Thumbnails That Pop</a></li>
-    </ul>
-  </section>
+  <h3>The Challenge of Print vs. Web</h3>
+  <p>Neha had a beautiful landscape shot taken on her new high-resolution camera. She wanted to print it as a large 24x16 inch poster for her wall. She knew how to resize images for her blog, but when she sent the file to the print shop, the test print came back soft and slightly blurry. What went wrong?</p>
 
-  <div class="nav-links" style="display:flex;justify-content:space-between;margin-top:30px;">
-    <div class="prev-link"><a href="/blogs/resize-ai-cover-art-for-dsp.html">← Previous</a></div>
-    <div class="next-link"><a href="/blogs/designing-album-covers-that-grab-attention.html">Next →</a></div>
+  <p>Resizing for print is a completely different challenge than resizing for the web. On the web, our main goal is a small file size for fast loading. For print, our *only* goal is maximum detail and accurate color, even if the file is 100MB. This requires a different set of rules.</p>
+
+  <h3>Step-by-Step: Resizing for a Perfect Print</h3>
+  
+  <h4>1. Know Your Target: Print Size & DPI</h4>
+  <p>First, decide your physical print size (e.g., 24x16 inches). Second, ask your print shop for their recommended <strong>DPI (Dots Per Inch)</strong>.
+  <ul>
+    <li><strong>300 DPI</strong> is the standard for high-quality, premium prints where viewers will be up close (like a photo book).</li>
+    <li><strong>150-200 DPI</strong> is often perfectly fine for larger prints that are viewed from a distance (like a wall poster).</li>
+  </ul>
+  </p>
+  
+  <h4>2. Calculate Your Final Pixel Dimensions</h4>
+  <p>This is the most important calculation. Do not guess.
+  <br><strong>(Target Inches) × (Target DPI) = (Required Pixels)</strong>
+  </p>
+  <p>For Neha's 24x16 inch print at 200 DPI, she needs:
+  <ul>
+    <li><strong>Width:</strong> 24 inches × 200 DPI = <strong>4800 pixels</strong></li>
+    <li><strong>Height:</strong> 16 inches × 200 DPI = <strong>3200 pixels</strong></li>
+  </ul>
+  Her resized file *must* be 4800 x 3200 pixels.
+  </p>
+  
+  <h4>3. Always Start with Your Full-Resolution Original</h4>
+  <p>Never use a photo you've already shrunk for email or Instagram. Find the original, full-size file from your camera (it might be a 50MB JPG or a 100MB RAW file). You need every pixel of data you can get.</p>
+
+  <h4>4. Use High-Quality Resampling</h4>
+  <p>When you resize in a program like Photoshop or GIMP, you're not just "stretching." The software is "resampling"—intelligently creating or deleting pixels. Always choose the highest quality setting, often called <strong>"Bicubic (best for smooth gradients)"</strong> or <strong>"Bicubic Sharper (best for reduction)"</strong>.</p>
+  
+  <h4>5. Sharpen *After* Resizing</h4>
+  <p>Resizing (especially downscaling) can make an image slightly "soft." The final step is to apply a gentle sharpening filter (like an "Unsharp Mask") to the *newly resized* image. This restores the crispness of the details.</p>
+  
+  <h4>6. Embed the Correct Color Profile</h4>
+  <p>Your screen uses an "RGB" color profile. Most printers use "CMYK." Ask your print shop which profile to use (e.g., "sRGB" or a custom one they provide) and embed it in the final file to ensure colors don't shift during printing.</p>
+
+  <h4>7. Export as TIFF or Max-Quality JPEG</h4>
+  <p>For print, file size doesn't matter, but quality does.
+  <ul>
+    <li><strong>TIFF:</strong> This is the professional, lossless standard. It's the best choice.</li>
+    <li><strong>JPEG:</strong> If you must use JPEG, set the quality to <strong>100 (Maximum)</strong>.</li>
+  </ul>
+  </p>
+
+  <div class="callout tip">
+    <h4>💡 Pro Tip 1: Always Edit a Duplicate</h4>
+    <p>Never, ever overwrite your original high-resolution file. Always save your print-ready version as a new file, like "landscape-print-24x16.tiff".</p>
+  </div>
+  <div class="callout tip">
+    <h4>💡 Pro Tip 2: What About Web Versions?</h4>
+    <p>After you've saved your massive TIFF file for the printer, you might want to share a copy on your blog. For this, you would do the *opposite*: prioritize small file size. You could take your new 4800px image, upload it to <strong>EasyImageCR.in</strong>, resize it to <strong>1200px</strong> wide, and convert it to <strong>WEBP</strong> format at <strong>85% quality</strong>. This will give you a tiny, fast-loading image perfect for web use.</p>
   </div>
 
-</article>
+  <div class="callout">
+    <h3>Mini FAQ</h3>
+    <p><strong>Can I upscale a small JPG to print larger?</strong><br>
+    It's not recommended as it will look blurry. The only exception is using modern "AI Upscaling" tools, which can intelligently invent detail, but results may vary.</p>
+    
+    <p><strong>TIFF or JPEG for the print shop?</strong><br>
+    Always choose TIFF if the shop accepts it. It's lossless. If they only accept JPEG, use the absolute maximum quality setting (100).</p>
+  </div>
+  
+  <br>
+  <a href="../blogs.html" class="small-btn">⬅ Back to Blogs</a>
+
 </div>
 
 <footer>
@@ -131,24 +148,25 @@
   <div>&copy; 2025 Easy Image Converter & Resizer (easyimagecr.in)</div>
 </footer>
 
-<!-- Buy Me a Coffee -->
 <script data-name="BMC-Widget" data-cfasync="false" 
   src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" 
   data-id="esayimagecr"
   data-description="Support Easy Image Converter & Resizer"
   data-message="Buy me a coffee!"
   data-color="#FFDD00"
-  data-position="Right"
-  data-x_margin="18"
+  data-position="Left" data-x_margin="18"
   data-y_margin="18">
 </script>
 
-<!-- Share Button -->
 <style>
 #ea-share-img{position:fixed; left:6px; bottom:6px; z-index:10000;}
-#ea-share-img img, #ea-share-img svg{
+/* UPDATED: Simplified style */
+#ea-share-img svg{
   width:40px; height:40px; cursor:pointer; border-radius:6px;
   box-shadow:0 3px 10px rgba(0,0,0,0.15);
+}
+@media(max-width:420px){
+  #ea-share-img svg{width:36px; height:36px;}
 }
 </style>
 
@@ -173,7 +191,7 @@ document.getElementById('ea-share-img').onclick = async () => {
 };
 </script>
 
-<script src="/assets/site.js" defer></script>
+<script src="../assets/site.js" defer></script>
 
 </body>
 </html>
